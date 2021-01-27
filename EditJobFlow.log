@@ -1,0 +1,24 @@
+01/06/2021 04:56:19 PM - EditJobFlow - INFO: Element found with locator: //input[@formcontrolname='mobile_no'] and  locatorType: xpath
+01/06/2021 04:56:20 PM - EditJobFlow - INFO: Sent data on element with locator: //input[@formcontrolname='mobile_no'] locatorType: xpath
+01/06/2021 04:56:20 PM - EditJobFlow - INFO: Element found with locator: //input[@formcontrolname='mobile_no'] and  locatorType: xpath
+01/06/2021 04:56:20 PM - EditJobFlow - INFO: Sent data on element with locator: //input[@formcontrolname='mobile_no'] locatorType: xpath
+01/06/2021 04:56:25 PM - EditJobFlow - INFO: Element found with locator: //input[@formcontrolname='otp'] and  locatorType: xpath
+01/06/2021 04:56:25 PM - EditJobFlow - INFO: Sent data on element with locator: //input[@formcontrolname='otp'] locatorType: xpath
+01/06/2021 04:56:25 PM - EditJobFlow - INFO: Element found with locator: //input[@formcontrolname='otp'] and  locatorType: xpath
+01/06/2021 04:56:25 PM - EditJobFlow - INFO: Sent data on element with locator: //input[@formcontrolname='otp'] locatorType: xpath
+01/06/2021 04:56:27 PM - EditJobFlow - INFO: Element not found with locator: (//nb-card/div[@class='nb-card-div'])[1] and  locatorType: xpath
+01/06/2021 04:56:27 PM - EditJobFlow - INFO: Cannot click on the element with locator: (//nb-card/div[@class='nb-card-div'])[1] locatorType: xpath
+01/06/2021 04:56:28 PM - EditJobFlow - INFO: Element not found with locator: (//nb-select/button[@type='button'])[1] and  locatorType: xpath
+01/06/2021 04:56:28 PM - EditJobFlow - INFO: Cannot click on the element with locator: (//nb-select/button[@type='button'])[1] locatorType: xpath
+01/06/2021 04:56:29 PM - EditJobFlow - INFO: Element not found with locator: //div/ul[@class='options-list']/nb-option[@value='editjob'] and  locatorType: xpath
+01/06/2021 04:56:29 PM - EditJobFlow - INFO: Cannot click on the element with locator: //div/ul[@class='options-list']/nb-option[@value='editjob'] locatorType: xpath
+01/06/2021 04:56:30 PM - EditJobFlow - INFO: Element not found with locator: (//div/span[contains(text(),'10+')])[1] and  locatorType: xpath
+01/06/2021 04:56:30 PM - EditJobFlow - INFO: Cannot click on the element with locator: (//div/span[contains(text(),'10+')])[1] locatorType: xpath
+01/06/2021 04:56:31 PM - EditJobFlow - INFO: Element not found with locator: //div/span[contains(text(),'Masters')] and  locatorType: xpath
+01/06/2021 04:56:31 PM - EditJobFlow - INFO: Cannot click on the element with locator: //div/span[contains(text(),'Masters')] locatorType: xpath
+01/06/2021 04:56:32 PM - EditJobFlow - INFO: Element not found with locator: //div/span/span[contains(text(),' Add More Skills')] and  locatorType: xpath
+01/06/2021 04:56:32 PM - EditJobFlow - INFO: Cannot click on the element with locator: //div/span/span[contains(text(),' Add More Skills')] locatorType: xpath
+01/06/2021 04:56:33 PM - EditJobFlow - INFO: Element not found with locator: //div[@class='ng-select-container']/div[@class='ng-value-container']/div[@class='ng-input']/input and  locatorType: xpath
+01/06/2021 04:56:33 PM - EditJobFlow - INFO: Cannot send data on the element with locator: //div[@class='ng-select-container']/div[@class='ng-value-container']/div[@class='ng-input']/input locatorType: xpath
+01/06/2021 04:56:35 PM - EditJobFlow - INFO: Element not found with locator: (//div/button[@tabindex='0' and contains(text(),'Save')])[2] and  locatorType: xpath
+01/06/2021 04:56:35 PM - EditJobFlow - INFO: Cannot click on the element with locator: (//div/button[@tabindex='0' and contains(text(),'Save')])[2] locatorType: xpath
