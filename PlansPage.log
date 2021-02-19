@@ -1,31 +1,37 @@
-01/11/2021 05:52:47 PM - PlansPage - INFO: Element found with locator: //input[@formcontrolname='mobile_no'] and  locatorType: xpath
-01/11/2021 05:52:47 PM - PlansPage - INFO: Sent data on element with locator: //input[@formcontrolname='mobile_no'] locatorType: xpath
-01/11/2021 05:52:47 PM - PlansPage - INFO: Element found with locator: //input[@formcontrolname='mobile_no'] and  locatorType: xpath
-01/11/2021 05:52:47 PM - PlansPage - INFO: Sent data on element with locator: //input[@formcontrolname='mobile_no'] locatorType: xpath
-01/11/2021 05:52:51 PM - PlansPage - INFO: Element found with locator: //input[@formcontrolname='otp'] and  locatorType: xpath
-01/11/2021 05:52:51 PM - PlansPage - INFO: Sent data on element with locator: //input[@formcontrolname='otp'] locatorType: xpath
-01/11/2021 05:52:51 PM - PlansPage - INFO: Element found with locator: //input[@formcontrolname='otp'] and  locatorType: xpath
-01/11/2021 05:52:51 PM - PlansPage - INFO: Sent data on element with locator: //input[@formcontrolname='otp'] locatorType: xpath
-01/11/2021 05:52:54 PM - PlansPage - INFO: Element found with locator: //span[@class='menu-title' and contains(text(),'Plans')] and  locatorType: xpath
-01/11/2021 05:52:54 PM - PlansPage - INFO: Clicked on element with locator: //span[@class='menu-title' and contains(text(),'Plans')] locatorType: xpath
-01/11/2021 05:52:56 PM - PlansPage - INFO: Element found with locator: (//button[contains(text(),'BUY NOW')])[1] and  locatorType: xpath
-01/11/2021 05:52:56 PM - PlansPage - INFO: Clicked on element with locator: (//button[contains(text(),'BUY NOW')])[1] locatorType: xpath
-01/11/2021 05:53:01 PM - PlansPage - INFO: switched to frame
-01/11/2021 05:53:01 PM - PlansPage - INFO: Element found with locator: contact and  locatorType: id
-01/11/2021 05:53:01 PM - PlansPage - INFO: Sent data on element with locator: contact locatorType: id
-01/11/2021 05:53:01 PM - PlansPage - INFO: Element found with locator: footer-cta and  locatorType: id
-01/11/2021 05:53:01 PM - PlansPage - INFO: Clicked on element with locator: footer-cta locatorType: id
-01/11/2021 05:53:03 PM - PlansPage - INFO: Element found with locator: //div[@class='svelte-13rsokc']/div[@slot='title' and contains(text(),'Netbanking')] and  locatorType: xpath
-01/11/2021 05:53:03 PM - PlansPage - INFO: Clicked on element with locator: //div[@class='svelte-13rsokc']/div[@slot='title' and contains(text(),'Netbanking')] locatorType: xpath
-01/11/2021 05:53:06 PM - PlansPage - INFO: Element found with locator: //div[@class='mchild item-inner svelte-xjs2xa']/div[contains(text(),'HDFC')] and  locatorType: xpath
-01/11/2021 05:53:06 PM - PlansPage - INFO: Clicked on element with locator: //div[@class='mchild item-inner svelte-xjs2xa']/div[contains(text(),'HDFC')] locatorType: xpath
-01/11/2021 05:53:10 PM - PlansPage - INFO: CDwindow-99BC1839238903394BB1D5DF88564C62
-01/11/2021 05:53:10 PM - PlansPage - INFO: CDwindow-99BC1839238903394BB1D5DF88564C62
-01/11/2021 05:53:10 PM - PlansPage - INFO: Element found with locator: footer and  locatorType: id
-01/11/2021 05:53:10 PM - PlansPage - INFO: Clicked on element with locator: footer locatorType: id
-01/11/2021 05:53:10 PM - PlansPage - INFO: inside for loop
-01/11/2021 05:53:10 PM - PlansPage - INFO: inside for loop
-01/11/2021 05:53:10 PM - PlansPage - INFO: CDwindow-523E55952745AB66DA8038464D7093A3
-01/11/2021 05:53:12 PM - PlansPage - INFO: switched window
-01/11/2021 05:53:12 PM - PlansPage - INFO: Element found with locator: //button[@class='success' and contains(text(),'Success')] and  locatorType: xpath
-01/11/2021 05:53:13 PM - PlansPage - INFO: Clicked on element with locator: //button[@class='success' and contains(text(),'Success')] locatorType: xpath
+02/19/2021 11:42:26 AM - PlansPage - INFO: Element found with locator: //input[@formcontrolname='mobile_no'] and  locatorType: xpath
+02/19/2021 11:42:26 AM - PlansPage - INFO: Sent data on element with locator: //input[@formcontrolname='mobile_no'] locatorType: xpath
+02/19/2021 11:42:26 AM - PlansPage - INFO: Element found with locator: //input[@formcontrolname='mobile_no'] and  locatorType: xpath
+02/19/2021 11:42:26 AM - PlansPage - INFO: Sent data on element with locator: //input[@formcontrolname='mobile_no'] locatorType: xpath
+02/19/2021 11:42:29 AM - PlansPage - INFO: Element found with locator: //input[@formcontrolname='otp'] and  locatorType: xpath
+02/19/2021 11:42:29 AM - PlansPage - INFO: Sent data on element with locator: //input[@formcontrolname='otp'] locatorType: xpath
+02/19/2021 11:42:29 AM - PlansPage - INFO: Element found with locator: //input[@formcontrolname='otp'] and  locatorType: xpath
+02/19/2021 11:42:29 AM - PlansPage - INFO: Sent data on element with locator: //input[@formcontrolname='otp'] locatorType: xpath
+02/19/2021 11:42:31 AM - PlansPage - INFO: Element found with locator: //span[@class='menu-title' and contains(text(),'Plans')] and  locatorType: xpath
+02/19/2021 11:42:31 AM - PlansPage - INFO: Clicked on element with locator: //span[@class='menu-title' and contains(text(),'Plans')] locatorType: xpath
+02/19/2021 11:42:33 AM - PlansPage - INFO: Element found with locator: (//button[contains(text(),'BUY NOW')])[1] and  locatorType: xpath
+02/19/2021 11:42:33 AM - PlansPage - INFO: Clicked on element with locator: (//button[contains(text(),'BUY NOW')])[1] locatorType: xpath
+02/19/2021 11:42:35 AM - PlansPage - INFO: switched to frame
+02/19/2021 11:42:35 AM - PlansPage - INFO: Element found with locator: contact and  locatorType: id
+02/19/2021 11:42:35 AM - PlansPage - INFO: Sent data on element with locator: contact locatorType: id
+02/19/2021 11:42:38 AM - PlansPage - INFO: Element found with locator: email and  locatorType: id
+02/19/2021 11:42:40 AM - PlansPage - INFO: Element found with locator: email and  locatorType: id
+02/19/2021 11:42:40 AM - PlansPage - INFO: Sent data on element with locator: email locatorType: id
+02/19/2021 11:42:40 AM - PlansPage - INFO: Element found with locator: footer-cta and  locatorType: id
+02/19/2021 11:42:41 AM - PlansPage - INFO: Clicked on element with locator: footer-cta locatorType: id
+02/19/2021 11:42:43 AM - PlansPage - INFO: Element found with locator: //div[@class='svelte-13rsokc']/div[@slot='title' and contains(text(),'Netbanking')] and  locatorType: xpath
+02/19/2021 11:42:43 AM - PlansPage - INFO: Clicked on element with locator: //div[@class='svelte-13rsokc']/div[@slot='title' and contains(text(),'Netbanking')] locatorType: xpath
+02/19/2021 11:42:45 AM - PlansPage - INFO: Element found with locator: //div[@class='mchild item-inner svelte-xjs2xa']/div[contains(text(),'HDFC')] and  locatorType: xpath
+02/19/2021 11:42:45 AM - PlansPage - INFO: Clicked on element with locator: //div[@class='mchild item-inner svelte-xjs2xa']/div[contains(text(),'HDFC')] locatorType: xpath
+02/19/2021 11:42:47 AM - PlansPage - INFO: Screenshot save to directory: /home/kavya/PycharmProjects/RecruiterPanelAutomation/base/../screenshots/payment window.1613715167530.png
+02/19/2021 11:42:47 AM - PlansPage - INFO: CDwindow-0B31276EDC8699399550BB2634973641
+02/19/2021 11:42:47 AM - PlansPage - INFO: CDwindow-0B31276EDC8699399550BB2634973641
+02/19/2021 11:42:47 AM - PlansPage - INFO: Element found with locator: footer and  locatorType: id
+02/19/2021 11:42:47 AM - PlansPage - INFO: Clicked on element with locator: footer locatorType: id
+02/19/2021 11:42:47 AM - PlansPage - INFO: inside for loop
+02/19/2021 11:42:47 AM - PlansPage - INFO: inside for loop
+02/19/2021 11:42:47 AM - PlansPage - INFO: CDwindow-01A4735F2F2ABB4C98D0ADADEE87ECF6
+02/19/2021 11:42:49 AM - PlansPage - INFO: switched window
+02/19/2021 11:42:50 AM - PlansPage - INFO: Screenshot save to directory: /home/kavya/PycharmProjects/RecruiterPanelAutomation/base/../screenshots/razor pay popup.1613715169897.png
+02/19/2021 11:42:50 AM - PlansPage - INFO: Element found with locator: //button[@class='success' and contains(text(),'Success')] and  locatorType: xpath
+02/19/2021 11:42:51 AM - PlansPage - INFO: Clicked on element with locator: //button[@class='success' and contains(text(),'Success')] locatorType: xpath
+02/19/2021 11:42:53 AM - PlansPage - INFO: Screenshot save to directory: /home/kavya/PycharmProjects/RecruiterPanelAutomation/base/../screenshots/payment successful popup.1613715173052.png

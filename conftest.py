@@ -16,7 +16,7 @@ def oneTimeSetUp(request, browser):
 
 
     yield driver
-    # driver.quit()
+    driver.quit()
     print("Running one time tearDown")
 
 def pytest_addoption(parser):

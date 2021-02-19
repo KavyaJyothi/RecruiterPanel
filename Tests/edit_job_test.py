@@ -14,7 +14,7 @@ class EditJob_Test(unittest.TestCase):
     def classSetup(self, oneTimeSetUp):
         self.ejf = EditJobFlow(self.driver)
 
-    @data(*read_csv_data("data1.csv"))
+    @data(*read_csv_data("editJob.csv"))
     @unpack
     def test_edit_job(self,mobileNo, otp):
         time.sleep(3)

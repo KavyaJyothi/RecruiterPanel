@@ -1,0 +1,81 @@
+02/19/2021 09:53:55 AM - RecruiterOnboardReferal - INFO: Element found with locator: //input[@formcontrolname='mobile_no'] and  locatorType: xpath
+02/19/2021 09:53:55 AM - RecruiterOnboardReferal - INFO: Sent data on element with locator: //input[@formcontrolname='mobile_no'] locatorType: xpath
+02/19/2021 09:53:55 AM - RecruiterOnboardReferal - INFO: Element found with locator: //input[@formcontrolname='mobile_no'] and  locatorType: xpath
+02/19/2021 09:53:55 AM - RecruiterOnboardReferal - INFO: Sent data on element with locator: //input[@formcontrolname='mobile_no'] locatorType: xpath
+02/19/2021 09:53:58 AM - RecruiterOnboardReferal - INFO: Element found with locator: //input[@formcontrolname='otp'] and  locatorType: xpath
+02/19/2021 09:53:58 AM - RecruiterOnboardReferal - INFO: Sent data on element with locator: //input[@formcontrolname='otp'] locatorType: xpath
+02/19/2021 09:53:58 AM - RecruiterOnboardReferal - INFO: Element found with locator: //input[@formcontrolname='otp'] and  locatorType: xpath
+02/19/2021 09:53:58 AM - RecruiterOnboardReferal - INFO: Sent data on element with locator: //input[@formcontrolname='otp'] locatorType: xpath
+02/19/2021 09:54:04 AM - RecruiterOnboardReferal - INFO: CDwindow-9600E9B3F1A49C0D43D33B691C9B4540
+02/19/2021 09:54:04 AM - RecruiterOnboardReferal - INFO: inside for loop
+02/19/2021 09:54:04 AM - RecruiterOnboardReferal - INFO: inside for loop
+02/19/2021 09:54:04 AM - RecruiterOnboardReferal - INFO: CDwindow-97AED725B398DE552080174A64B03B5B
+02/19/2021 09:54:06 AM - RecruiterOnboardReferal - INFO: switched window
+02/19/2021 09:54:06 AM - RecruiterOnboardReferal - INFO: Element found with locator: //input[@id='identifierId'] and  locatorType: xpath
+02/19/2021 09:54:06 AM - RecruiterOnboardReferal - INFO: Sent data on element with locator: //input[@id='identifierId'] locatorType: xpath
+02/19/2021 09:54:08 AM - RecruiterOnboardReferal - INFO: Element found with locator: //*[@id='identifierNext']/div/button/div[2] and  locatorType: xpath
+02/19/2021 09:54:09 AM - RecruiterOnboardReferal - INFO: Clicked on element with locator: //*[@id='identifierNext']/div/button/div[2] locatorType: xpath
+02/19/2021 09:54:11 AM - RecruiterOnboardReferal - INFO: Element found with locator: //input[@type='password'] and  locatorType: xpath
+02/19/2021 09:54:11 AM - RecruiterOnboardReferal - INFO: Sent data on element with locator: //input[@type='password'] locatorType: xpath
+02/19/2021 09:54:13 AM - RecruiterOnboardReferal - INFO: Element found with locator: //div[@id='passwordNext']/div/button/div[2] and  locatorType: xpath
+02/19/2021 09:54:13 AM - RecruiterOnboardReferal - INFO: Clicked on element with locator: //div[@id='passwordNext']/div/button/div[2] locatorType: xpath
+02/19/2021 09:54:19 AM - RecruiterOnboardReferal - INFO: Element found with locator: //ngx-location/input and  locatorType: xpath
+02/19/2021 09:54:19 AM - RecruiterOnboardReferal - INFO: Sent data on element with locator: //ngx-location/input locatorType: xpath
+02/19/2021 09:54:21 AM - RecruiterOnboardReferal - INFO: Element found with locator: //nb-card/nb-list/nb-list-item[1]/div[1]/b and  locatorType: xpath
+02/19/2021 09:54:21 AM - RecruiterOnboardReferal - INFO: Clicked on element with locator: //nb-card/nb-list/nb-list-item[1]/div[1]/b locatorType: xpath
+02/19/2021 09:54:25 AM - RecruiterOnboardReferal - INFO: Element found with locator: //div/input[@role='combobox'] and  locatorType: xpath
+02/19/2021 09:54:25 AM - RecruiterOnboardReferal - INFO: Clicked on element with locator: //div/input[@role='combobox'] locatorType: xpath
+02/19/2021 09:54:25 AM - RecruiterOnboardReferal - INFO: selected company field
+02/19/2021 09:54:27 AM - RecruiterOnboardReferal - INFO: Element found with locator: //ng-dropdown-panel/div/div/div[1] and  locatorType: xpath
+02/19/2021 09:54:27 AM - RecruiterOnboardReferal - INFO: Clicked on element with locator: //ng-dropdown-panel/div/div/div[1] locatorType: xpath
+02/19/2021 09:54:31 AM - RecruiterOnboardReferal - INFO: Element found with locator: //ng-select/div/div/div[2]/input and  locatorType: xpath
+02/19/2021 09:54:31 AM - RecruiterOnboardReferal - INFO: Clicked on element with locator: //ng-select/div/div/div[2]/input locatorType: xpath
+02/19/2021 09:54:34 AM - RecruiterOnboardReferal - INFO: Element found with locator: //ng-dropdown-panel/div/div/div[1] and  locatorType: xpath
+02/19/2021 09:54:34 AM - RecruiterOnboardReferal - INFO: Clicked on element with locator: //ng-dropdown-panel/div/div/div[1] locatorType: xpath
+02/19/2021 09:54:38 AM - RecruiterOnboardReferal - INFO: Element found with locator: //a[@class='ng-star-inserted' and contains(text(),'I have a Referral Code')] and  locatorType: xpath
+02/19/2021 09:54:38 AM - RecruiterOnboardReferal - INFO: Clicked on element with locator: //a[@class='ng-star-inserted' and contains(text(),'I have a Referral Code')] locatorType: xpath
+02/19/2021 09:54:40 AM - RecruiterOnboardReferal - INFO: Element found with locator: //input[@formcontrolname='referral_code'] and  locatorType: xpath
+02/19/2021 09:54:40 AM - RecruiterOnboardReferal - INFO: Sent data on element with locator: //input[@formcontrolname='referral_code'] locatorType: xpath
+02/19/2021 09:54:41 AM - RecruiterOnboardReferal - INFO: Element found with locator: //button[contains(text(),'Continue')] and  locatorType: xpath
+02/19/2021 09:54:41 AM - RecruiterOnboardReferal - INFO: Clicked on element with locator: //button[contains(text(),'Continue')] locatorType: xpath
+02/19/2021 09:54:46 AM - RecruiterOnboardReferal - INFO: Screenshot save to directory: /home/kavya/PycharmProjects/RecruiterPanelAutomation/base/../screenshots/referal_code_added.1613708686509.png
+02/19/2021 09:54:46 AM - RecruiterOnboardReferal - INFO: Element found with locator: (//button[@tabindex='0'])[1] and  locatorType: xpath
+02/19/2021 09:54:46 AM - RecruiterOnboardReferal - INFO: Clicked on element with locator: (//button[@tabindex='0'])[1] locatorType: xpath
+02/19/2021 09:54:54 AM - RecruiterOnboardReferal - INFO: Screenshot save to directory: /home/kavya/PycharmProjects/RecruiterPanelAutomation/base/../screenshots/onboard successful.1613708693823.png
+02/19/2021 09:54:56 AM - RecruiterOnboardReferal - INFO: Element found with locator: //button[contains(text(),'Post a Job')] and  locatorType: xpath
+02/19/2021 09:54:56 AM - RecruiterOnboardReferal - INFO: Element Found
+02/19/2021 09:54:56 AM - RecruiterOnboardReferal - INFO: Element found with locator: //button[contains(text(),'Post a Job')] and  locatorType: xpath
+02/19/2021 09:54:56 AM - RecruiterOnboardReferal - INFO: Clicked on element with locator: //button[contains(text(),'Post a Job')] locatorType: xpath
+02/19/2021 09:54:58 AM - RecruiterOnboardReferal - INFO: Element found with locator: (//div[@class='ng-input']/input[@role='combobox'])[1] and  locatorType: xpath
+02/19/2021 09:54:58 AM - RecruiterOnboardReferal - INFO: Clicked on element with locator: (//div[@class='ng-input']/input[@role='combobox'])[1] locatorType: xpath
+02/19/2021 09:54:59 AM - RecruiterOnboardReferal - INFO: Element found with locator: //div[@role='option']/div/div/div[contains(text(),'Sales & Business Development')] and  locatorType: xpath
+02/19/2021 09:54:59 AM - RecruiterOnboardReferal - INFO: Clicked on element with locator: //div[@role='option']/div/div/div[contains(text(),'Sales & Business Development')] locatorType: xpath
+02/19/2021 09:55:02 AM - RecruiterOnboardReferal - INFO: Element found with locator: (//div[@class='ng-input']/input[@role='combobox'])[2] and  locatorType: xpath
+02/19/2021 09:55:02 AM - RecruiterOnboardReferal - INFO: Clicked on element with locator: (//div[@class='ng-input']/input[@role='combobox'])[2] locatorType: xpath
+02/19/2021 09:55:02 AM - RecruiterOnboardReferal - INFO: Element found with locator: //div[@role='option']/span[contains(text(),'Retail')] and  locatorType: xpath
+02/19/2021 09:55:02 AM - RecruiterOnboardReferal - INFO: Clicked on element with locator: //div[@role='option']/span[contains(text(),'Retail')] locatorType: xpath
+02/19/2021 09:55:04 AM - RecruiterOnboardReferal - INFO: Element found with locator: (//div[@class='ng-input']/input[@role='combobox'])[3] and  locatorType: xpath
+02/19/2021 09:55:04 AM - RecruiterOnboardReferal - INFO: Clicked on element with locator: (//div[@class='ng-input']/input[@role='combobox'])[3] locatorType: xpath
+02/19/2021 09:55:06 AM - RecruiterOnboardReferal - INFO: Element found with locator: //div[@role='option']/div[contains(text(),'Area Sales Officer')] and  locatorType: xpath
+02/19/2021 09:55:06 AM - RecruiterOnboardReferal - INFO: Clicked on element with locator: //div[@role='option']/div[contains(text(),'Area Sales Officer')] locatorType: xpath
+02/19/2021 09:55:08 AM - RecruiterOnboardReferal - INFO: Element found with locator: //ngx-location/input and  locatorType: xpath
+02/19/2021 09:55:08 AM - RecruiterOnboardReferal - INFO: Sent data on element with locator: //ngx-location/input locatorType: xpath
+02/19/2021 09:55:10 AM - RecruiterOnboardReferal - INFO: Element found with locator: //nb-list-item[@role='listitem']/div/b[contains(text(),'Bengaluru')] and  locatorType: xpath
+02/19/2021 09:55:10 AM - RecruiterOnboardReferal - INFO: Clicked on element with locator: //nb-list-item[@role='listitem']/div/b[contains(text(),'Bengaluru')] locatorType: xpath
+02/19/2021 09:55:12 AM - RecruiterOnboardReferal - INFO: Element found with locator: //button[@status='danger' and @tabindex='0'  and contains(text(),'NEXT')] and  locatorType: xpath
+02/19/2021 09:55:12 AM - RecruiterOnboardReferal - INFO: Clicked on element with locator: //button[@status='danger' and @tabindex='0'  and contains(text(),'NEXT')] locatorType: xpath
+02/19/2021 09:55:15 AM - RecruiterOnboardReferal - INFO: Element found with locator: //button[@status='danger' and @tabindex='0'  and contains(text(),'NEXT')] and  locatorType: xpath
+02/19/2021 09:55:15 AM - RecruiterOnboardReferal - INFO: Clicked on element with locator: //button[@status='danger' and @tabindex='0'  and contains(text(),'NEXT')] locatorType: xpath
+02/19/2021 09:55:17 AM - RecruiterOnboardReferal - INFO: Element found with locator: //button[@status='danger' and @tabindex='0'  and contains(text(),'NEXT')] and  locatorType: xpath
+02/19/2021 09:55:17 AM - RecruiterOnboardReferal - INFO: Clicked on element with locator: //button[@status='danger' and @tabindex='0'  and contains(text(),'NEXT')] locatorType: xpath
+02/19/2021 09:55:20 AM - RecruiterOnboardReferal - INFO: Element found with locator: //button[@status='danger' and @tabindex='0'  and contains(text(),'NEXT')] and  locatorType: xpath
+02/19/2021 09:55:20 AM - RecruiterOnboardReferal - INFO: Clicked on element with locator: //button[@status='danger' and @tabindex='0'  and contains(text(),'NEXT')] locatorType: xpath
+02/19/2021 09:55:20 AM - RecruiterOnboardReferal - INFO: Element found with locator: //button[@status='danger' and @tabindex='0'  and contains(text(),'NEXT')] and  locatorType: xpath
+02/19/2021 09:55:20 AM - RecruiterOnboardReferal - INFO: Clicked on element with locator: //button[@status='danger' and @tabindex='0'  and contains(text(),'NEXT')] locatorType: xpath
+02/19/2021 09:55:23 AM - RecruiterOnboardReferal - INFO: Screenshot save to directory: /home/kavya/PycharmProjects/RecruiterPanelAutomation/base/../screenshots/publish job.1613708723564.png
+02/19/2021 09:55:23 AM - RecruiterOnboardReferal - INFO: Element found with locator: //button[@status='danger' and @tabindex='0'  and contains(text(),'Publish Job')] and  locatorType: xpath
+02/19/2021 09:55:23 AM - RecruiterOnboardReferal - INFO: Clicked on element with locator: //button[@status='danger' and @tabindex='0'  and contains(text(),'Publish Job')] locatorType: xpath
+02/19/2021 09:55:31 AM - RecruiterOnboardReferal - INFO: Element found with locator: //nb-dialog-container/nb-card/nb-card-body/div and  locatorType: xpath
+02/19/2021 09:55:31 AM - RecruiterOnboardReferal - INFO: Element Found
+02/19/2021 09:55:33 AM - RecruiterOnboardReferal - INFO: Element found with locator: //button[contains(text(),'View Top Candidates')] and  locatorType: xpath
+02/19/2021 09:55:34 AM - RecruiterOnboardReferal - INFO: Clicked on element with locator: //button[contains(text(),'View Top Candidates')] locatorType: xpath

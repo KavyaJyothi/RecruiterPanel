@@ -20,9 +20,18 @@ class EditJobFlow(SeleniumDriver):
     xpath_qual_master="//div/span[contains(text(),'Masters')]"
     xpath_add_more_skills="//div/span/span[contains(text(),' Add More Skills')]"
     xpath_add_skills_text_box="//div[@class='ng-select-container']/div[@class='ng-value-container']/div[@class='ng-input']/input"
+    xpath_add_item="//div[@role='option']/span"
     xpath_save_button="(//div/button[@tabindex='0' and contains(text(),'Save')])[2]"
+    xpath_add_benifits="//span[contains(text(),' Add Benefits')]"
+    xpath_select_benifits="//nb-card/nb-card-body/div[9]"
+    xpath_benifits_done="//button[contains(text(),'Done')] "
+    xpath_add_lan = "//span[contains(text(),' Add Language')]"
+    xpath_select_lan = "//nb-card/nb-card-body/div[3]"
+    xpath_lan_done = "//button[contains(text(),'Done')] "
+    xpath_save_edit="(//button[contains(text(),'Save')])[2]"
     xpath_toast="nb-toastr-container.ng-tns-c35-7 ng-star-inserted > nb-toast"
     expected_text="Job post details updated successfully"
+
 
     def enterMobileNo(self, mobile):
         self.sendKeys(mobile, self.xpath_mobileNo, locatorType='xpath')
@@ -49,8 +58,23 @@ class EditJobFlow(SeleniumDriver):
         self.elementClick(self.xpath_add_more_skills, locatorType='xpath')
     def enterMoreSkills(self, skill):
         self.sendKeys(skill, self.xpath_add_skills_text_box, locatorType='xpath')
+        self.elementClick(self.xpath_add_item, locatorType='xpath')
     def clickSave(self):
         self.elementClick(self.xpath_save_button, locatorType='xpath')
+    def addBenifits(self):
+        time.sleep(2)
+        self.elementClick(self.xpath_add_benifits, locatorType='xpath')
+        time.sleep(2)
+        self.elementClick(self.xpath_select_benifits, locatorType='xpath')
+        self.elementClick(self.xpath_benifits_done, locatorType='xpath')
+    def addLanguage(self):
+        self.elementClick(self.xpath_add_lan, locatorType='xpath')
+        time.sleep(2)
+        self.elementClick(self.xpath_select_lan, locatorType='xpath')
+        time.sleep(2)
+        self.elementClick(self.xpath_lan_done, locatorType='xpath')
+    def clickSaveEdit(self):
+        self.elementClick(self.xpath_save_edit, locatorType='xpath')
     def getToastText(self):
         actual_text=self.getElement(self.xpath_toast, locatorType='xpath').text
         if self.expected_text in actual_text:
@@ -72,7 +96,17 @@ class EditJobFlow(SeleniumDriver):
         self.enterMoreSkills('tally')
         time.sleep(2)
         self.clickSave()
-        time.sleep(3)
+        time.sleep(6)
+        self.addBenifits()
+        time.sleep(2)
+        self.addLanguage()
+        time.sleep(4)
+        self.clickSaveEdit()
+        
+        self.screenShot("Job Edit")
+        time.sleep(2)
+
+
 
 
 

@@ -15,21 +15,15 @@ class PlanPurchase_Test(unittest.TestCase):
         self.pp = PlansPage(self.driver)
 
 
-    @data(*read_csv_data("data1.csv"))
+    @data(*read_csv_data("plans.csv"))
     @unpack
-    def test_purchasePlans(self,mobileNo, otp):
-        time.sleep(3)
-        self.pp.enterMobileNo(mobileNo)
-        time.sleep(3)
-        self.pp.enterOTP(otp)
-        time.sleep(3)
-        self.pp.clickPlansIcon()
-        time.sleep(2)
-        self.pp.clickBuyNow()
-        time.sleep(5)
-        self.pp.enterPlansContactNo(mobileNo)
-        time.sleep(2)
-        self.pp.switch_to_window()
+    def test_purchasePlans(self,mobile_no, otp, email):
+
+        self.pp.login( mobile_no, otp)
+        self.pp.navigate_to_buy_plan( mobile_no, email)
+        #self.pp.enter_GST_Details(gst_no, address, email)
+
+
 
 
 

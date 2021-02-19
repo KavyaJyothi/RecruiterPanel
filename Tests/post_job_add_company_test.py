@@ -2,9 +2,9 @@ from Pages.post_job_add_company import JobPostingFlowAddCompany
 import unittest
 import pytest
 import time
-import  ddt
+from ddt import ddt, data, unpack
 
-@pytest.mark.usefixtures("oneTimeSetUp", "setUp")
+@pytest.mark.usefixtures("oneTimeSetUp")
 
 class PostJobAddCompanyTest(unittest.TestCase):
 

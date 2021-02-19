@@ -2,6 +2,7 @@ from base.selenium_driver import SeleniumDriver
 import utilities.custom_logger as cl
 import logging
 import time
+from utilities.teststatus import TestStatus
 class JobPostingFlow(SeleniumDriver):
 
     log = cl.customLogger(logging.DEBUG)
@@ -9,7 +10,7 @@ class JobPostingFlow(SeleniumDriver):
     def __init__(self, driver):
         super().__init__(driver)
         self.driver = driver
-
+    ###################locators##################################
     xpath_mobileNo = "//input[@formcontrolname='mobile_no']"
     xpath_otp = "//input[@formcontrolname='otp']"
     xpath_post_a_job_button="//button[@tabindex='0' ]/b[contains(text(),'+')]"
@@ -23,9 +24,11 @@ class JobPostingFlow(SeleniumDriver):
     xpath_location_bengaluru="//nb-list-item[@role='listitem']/div/b[contains(text(),'Bengaluru')]"
     xpath_next_button="//button[@status='danger' and @tabindex='0'  and contains(text(),'NEXT')]"
     xpath_publish_job="//button[@status='danger' and @tabindex='0'  and contains(text(),'Publish Job')]"
+    xpath_post_job_success_popup="//nb-card-header/div/small"
     xpath_view_sug_can="//button[@tabindex='0' and contains(text(),'View suggested candidates for this job')]"
     xpath_call_now_button="(//button[@tabindex='0']/img[@src='assets/svgs/call-white.svg'])[1]"
-
+    ############################# verification text ###########################################
+    view_sug_candidates_popup="View suggested candidates for this job"
     def enterMobileNo(self, mobile):
         self.sendKeys(mobile, self.xpath_mobileNo, locatorType='xpath')
         self.pressEnter(self.xpath_mobileNo, locatorType='xpath')
@@ -56,14 +59,18 @@ class JobPostingFlow(SeleniumDriver):
         self.elementClick(self.xpath_next_button, locatorType='xpath')
     def clickPublishJob(self):
         self.elementClick(self.xpath_publish_job, locatorType='xpath')
-    def clickViewSugCan(self):
-        self.elementClick(self.xpath_view_sug_can, locatorType='xpath')
-    def clickCallNowButton(self):
-        self.elementClick(self.xpath_call_now_button, locatorType='xpath')
+
+    def login_Click_Post_Job_Btn(self, mobile_no, otp):
+        time.sleep(2)
+        self.enterMobileNo(mobile_no)
+        time.sleep(2)
+        self.enterOTP(otp)
+        time.sleep(3)
+        self.clickPostAJob()
 
 
     def postAJob(self):
-        self.clickPostAJob()
+
         self.clickIndustryTextBox()
         time.sleep(1)
         self.selectIndustry()
@@ -82,14 +89,29 @@ class JobPostingFlow(SeleniumDriver):
         self.clickNextButton()
         time.sleep(2)
         self.clickNextButton()
-        time.sleep(3)
+        time.sleep(4)
         self.clickNextButton()
         self.clickNextButton()
+        time.sleep(4)
+        self.screenShot("publish job")
         time.sleep(3)
         self.clickPublishJob()
         time.sleep(3)
-        self.clickViewSugCan()
-        time.sleep(2)
-    def callFeedback(self):
-        self.clickCallNowButton()
+
+    def verifyJobPostSuccessMessage(self):
+        result=self.isElementPresent(self.xpath_post_job_success_popup, locatorType='xpath')
+        return result
+
+    def clickViewSugCan(self):
+        self.elementClick(self.xpath_view_sug_can, locatorType='xpath')
+
+    def verifyCallNowButton(self):
+        result=self.isElementPresent(self.xpath_call_now_button, locatorType='xpath')
+        return result
+
+    def clickCallNowButton(self):
+        self.elementClick(self.xpath_call_now_button, locatorType='xpath')
+        time.sleep(3)
+        self.screenShot("contact status")
+
 

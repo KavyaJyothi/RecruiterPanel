@@ -1,0 +1,43 @@
+02/19/2021 09:55:48 AM - GSTDetailEntry - INFO: Element not found with locator: //input[@formcontrolname='mobile_no'] and  locatorType: xpath
+02/19/2021 09:55:48 AM - GSTDetailEntry - INFO: Cannot send data on the element with locator: //input[@formcontrolname='mobile_no'] locatorType: xpath
+02/19/2021 09:55:48 AM - GSTDetailEntry - INFO: Element not found with locator: //input[@formcontrolname='mobile_no'] and  locatorType: xpath
+02/19/2021 09:55:48 AM - GSTDetailEntry - INFO: Cannot send data on the element with locator: //input[@formcontrolname='mobile_no'] locatorType: xpath
+02/19/2021 09:55:50 AM - GSTDetailEntry - INFO: Element not found with locator: //input[@formcontrolname='otp'] and  locatorType: xpath
+02/19/2021 09:55:50 AM - GSTDetailEntry - INFO: Cannot send data on the element with locator: //input[@formcontrolname='otp'] locatorType: xpath
+02/19/2021 09:55:50 AM - GSTDetailEntry - INFO: Element not found with locator: //input[@formcontrolname='otp'] and  locatorType: xpath
+02/19/2021 09:55:50 AM - GSTDetailEntry - INFO: Cannot send data on the element with locator: //input[@formcontrolname='otp'] locatorType: xpath
+02/19/2021 09:55:54 AM - GSTDetailEntry - INFO: Element found with locator: //span[@class='menu-title' and contains(text(),'Plans')] and  locatorType: xpath
+02/19/2021 09:55:54 AM - GSTDetailEntry - INFO: Clicked on element with locator: //span[@class='menu-title' and contains(text(),'Plans')] locatorType: xpath
+02/19/2021 09:55:57 AM - GSTDetailEntry - INFO: Element found with locator: (//button[contains(text(),'BUY NOW')])[1] and  locatorType: xpath
+02/19/2021 09:55:57 AM - GSTDetailEntry - INFO: Clicked on element with locator: (//button[contains(text(),'BUY NOW')])[1] locatorType: xpath
+02/19/2021 09:55:59 AM - GSTDetailEntry - INFO: switched to frame
+02/19/2021 09:55:59 AM - GSTDetailEntry - INFO: Element found with locator: contact and  locatorType: id
+02/19/2021 09:55:59 AM - GSTDetailEntry - INFO: Sent data on element with locator: contact locatorType: id
+02/19/2021 09:56:02 AM - GSTDetailEntry - INFO: Element found with locator: email and  locatorType: id
+02/19/2021 09:56:02 AM - GSTDetailEntry - INFO: Sent data on element with locator: email locatorType: id
+02/19/2021 09:56:02 AM - GSTDetailEntry - INFO: Element found with locator: footer-cta and  locatorType: id
+02/19/2021 09:56:02 AM - GSTDetailEntry - INFO: Clicked on element with locator: footer-cta locatorType: id
+02/19/2021 09:56:04 AM - GSTDetailEntry - INFO: Element found with locator: //div[@class='svelte-13rsokc']/div[@slot='title' and contains(text(),'Netbanking')] and  locatorType: xpath
+02/19/2021 09:56:04 AM - GSTDetailEntry - INFO: Clicked on element with locator: //div[@class='svelte-13rsokc']/div[@slot='title' and contains(text(),'Netbanking')] locatorType: xpath
+02/19/2021 09:56:06 AM - GSTDetailEntry - INFO: Element found with locator: //div[@class='mchild item-inner svelte-xjs2xa']/div[contains(text(),'HDFC')] and  locatorType: xpath
+02/19/2021 09:56:06 AM - GSTDetailEntry - INFO: Clicked on element with locator: //div[@class='mchild item-inner svelte-xjs2xa']/div[contains(text(),'HDFC')] locatorType: xpath
+02/19/2021 09:56:09 AM - GSTDetailEntry - INFO: Screenshot save to directory: /home/kavya/PycharmProjects/RecruiterPanelAutomation/base/../screenshots/payment window.1613708768872.png
+02/19/2021 09:56:09 AM - GSTDetailEntry - INFO: CDwindow-9600E9B3F1A49C0D43D33B691C9B4540
+02/19/2021 09:56:09 AM - GSTDetailEntry - INFO: CDwindow-9600E9B3F1A49C0D43D33B691C9B4540
+02/19/2021 09:56:09 AM - GSTDetailEntry - INFO: Element found with locator: footer and  locatorType: id
+02/19/2021 09:56:09 AM - GSTDetailEntry - INFO: Clicked on element with locator: footer locatorType: id
+02/19/2021 09:56:09 AM - GSTDetailEntry - INFO: inside for loop
+02/19/2021 09:56:09 AM - GSTDetailEntry - INFO: inside for loop
+02/19/2021 09:56:09 AM - GSTDetailEntry - INFO: CDwindow-57CB0CC778D947FFBC82A03CA9B80C07
+02/19/2021 09:56:11 AM - GSTDetailEntry - INFO: switched window
+02/19/2021 09:56:11 AM - GSTDetailEntry - INFO: Screenshot save to directory: /home/kavya/PycharmProjects/RecruiterPanelAutomation/base/../screenshots/razor pay popup.1613708771338.png
+02/19/2021 09:56:11 AM - GSTDetailEntry - INFO: Element found with locator: //button[@class='success' and contains(text(),'Success')] and  locatorType: xpath
+02/19/2021 09:56:12 AM - GSTDetailEntry - INFO: Clicked on element with locator: //button[@class='success' and contains(text(),'Success')] locatorType: xpath
+02/19/2021 09:56:14 AM - GSTDetailEntry - INFO: Screenshot save to directory: /home/kavya/PycharmProjects/RecruiterPanelAutomation/base/../screenshots/payment successful popup.1613708774403.png
+02/19/2021 09:56:19 AM - GSTDetailEntry - INFO: Element found with locator: gst and  locatorType: id
+02/19/2021 09:56:20 AM - GSTDetailEntry - INFO: Sent data on element with locator: gst locatorType: id
+02/19/2021 09:56:27 AM - GSTDetailEntry - INFO: Element found with locator: address and  locatorType: id
+02/19/2021 09:56:27 AM - GSTDetailEntry - INFO: Sent data on element with locator: address locatorType: id
+02/19/2021 09:56:30 AM - GSTDetailEntry - INFO: Element found with locator: email and  locatorType: id
+02/19/2021 09:56:30 AM - GSTDetailEntry - INFO: Sent data on element with locator: email locatorType: id
+02/19/2021 09:56:33 AM - GSTDetailEntry - INFO: Screenshot save to directory: /home/kavya/PycharmProjects/RecruiterPanelAutomation/base/../screenshots/GST details.1613708793764.png

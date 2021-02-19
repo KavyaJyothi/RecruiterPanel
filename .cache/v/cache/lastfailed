@@ -1,0 +1,4 @@
+{
+  "Tests/edit_job_test.py::EditJob_Test::test_edit_job": true, 
+  "Tests/plan_purchase_test.py::PlanPurchase_Test::test_purchasePlans": true
+}

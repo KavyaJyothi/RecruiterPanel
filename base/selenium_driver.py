@@ -1,4 +1,5 @@
 from  selenium import webdriver
+import os
 from selenium.webdriver.common.by import By
 from traceback import print_stack
 from selenium.webdriver.support.ui import WebDriverWait
@@ -16,6 +17,25 @@ class SeleniumDriver():
     def __init__(self, driver):
         self.driver = driver
 
+    def screenShot(self, resultMessage):
+        """
+        Takes screenshot of the current open web page
+        """
+        fileName = resultMessage + "." + str(round(time.time() * 1000)) + ".png"
+        screenshotDirectory = "../screenshots/"
+        relativeFileName = screenshotDirectory + fileName
+        currentDirectory = os.path.dirname(__file__)
+        destinationFile = os.path.join(currentDirectory, relativeFileName)
+        destinationDirectory = os.path.join(currentDirectory, screenshotDirectory)
+
+        try:
+            if not os.path.exists(destinationDirectory):
+                os.makedirs(destinationDirectory)
+            self.driver.save_screenshot(destinationFile)
+            self.log.info("Screenshot save to directory: " + destinationFile)
+        except:
+            self.log.error("### Exception Occurred when taking screenshot")
+            print_stack()
     def getByType(self, locatorType):
         locatorType = locatorType.lower()
         if locatorType == "id":
@@ -47,6 +67,18 @@ class SeleniumDriver():
             self.log.info("Element not found with locator: " + locator +
                           " and  locatorType: " + locatorType)
         return element
+    def clearField(self, locator, locatorType="id"):
+        element = None
+        try:
+            locatorType = locatorType.lower()
+            byType = self.getByType(locatorType)
+            element = self.driver.find_element(byType, locator)
+            element.clear()
+            self.log.info("Element found with locator: " + locator +
+                          " and  locatorType: " + locatorType)
+        except:
+            self.log.info("Element not found with locator: " + locator +
+                          " and  locatorType: " + locatorType)
 
     def elementClick(self, locator, locatorType="id"):
         try:
@@ -58,6 +90,21 @@ class SeleniumDriver():
             self.log.info("Cannot click on the element with locator: " + locator +
                           " locatorType: " + locatorType)
             print_stack()
+
+    def getTextOnElement(self, locator, locatorType="id"):
+        try:
+            actual_text= self.getElement(locator, locatorType).getText()
+            self.log.info(actual_text)
+            return actual_text
+        except:
+            self.log.info("Unable to locate element: " + locator +
+                          " locatorType: " + locatorType)
+            print_stack()
+    def verifyText(self, expected_text, actual_text):
+        if expected_text in actual_text:
+            return True
+        else:
+            return  False
     def getCookies(self):
         cookies=self.driver.get_cookies()
         return cookies
@@ -149,3 +196,5 @@ class SeleniumDriver():
             self.log.info("Element not appeared on the web page")
             print_stack()
         return element
+    def webScroll(self):
+        self.driver.execute_script("window.scrollTo(0, -1000);")
