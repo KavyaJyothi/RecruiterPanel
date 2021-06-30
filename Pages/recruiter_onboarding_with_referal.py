@@ -70,7 +70,7 @@ class RecruiterOnboardReferal(JobPostingFlow):
         time.sleep(2)
     def select_location(self):
         self.sendKeys("j", self.xpath_location, locatorType="xpath")
-        time.sleep(2)
+        # time.sleep(2)
         self.elementClick(self.xpath_select_location, locatorType="xpath")
     def select_company(self):
 
@@ -80,18 +80,18 @@ class RecruiterOnboardReferal(JobPostingFlow):
         self.elementClick(self.xpath_select_company, locatorType="xpath")
     def select_designation(self):
         self.elementClick(self.xpath_designation_field, locatorType="xpath")
-        time.sleep(2)
+        # time.sleep(2)
         self.elementClick(self.xpath_select_designation, locatorType="xpath")
     def enter_referal(self, referal_code):
         self.elementClick(self.xpath_referal_link, locatorType="xpath")
-        time.sleep(2)
+        # time.sleep(2)
         self.sendKeys(referal_code,self.xpath_referal_field, locatorType="xpath")
         time.sleep(1)
         self.elementClick(self.xpath_continue_button, locatorType="xpath")
         time.sleep(5)
         self.screenShot('referal_code_added')
         self.elementClick(self.xpath_register_btn1, locatorType="xpath")
-        time.sleep(2)
+        # time.sleep(2)
         
     def verifyToastMessage(self):
         actual_message=self.getTextOnElement(self.xpath_referal_success_msg, locatorType="xpath")
@@ -102,7 +102,7 @@ class RecruiterOnboardReferal(JobPostingFlow):
 
     def recruiter_login(self, mobile_no, otp):
         self.enterMobileNo(mobile_no)
-        time.sleep(3)
+        # time.sleep(3)
         self.enterOTP(otp)
     def recruiter_details(self,email, password,referal_code):
         self.enterEmail(email, password)
@@ -112,26 +112,26 @@ class RecruiterOnboardReferal(JobPostingFlow):
         self.select_company()
         time.sleep(4)
         self.select_designation()
-        time.sleep(4)
+        # time.sleep(4)
         self.enter_referal(referal_code)
-        time.sleep(3)
+        # time.sleep(3)
         # self.verifyToastMessage()
 
     def verify_onboard_succesful(self):
         self.screenShot('onboard successful')
-        time.sleep(2)
+        # time.sleep(2)
         result = self.isElementPresent(self.xpath_post_a_job_btn, locatorType="xpath")
         return result
 
     def verifyFreeJobPost(self):
         self.elementClick(self.xpath_post_a_job_btn, locatorType='xpath')
-        time.sleep(2)
+        # time.sleep(2)
         self.postAJob()
-        time.sleep(3)
+        # time.sleep(3)
 
     def verifyFreemiumPopup(self):
        result= self.isElementPresent(self.xpath_freemium_popup, locatorType="xpath")
-       time.sleep(2)
+       # time.sleep(2)
        self.elementClick(self.xpath_view_candidates, locatorType='xpath')
-       time.sleep(5)
+       # time.sleep(5)
        return result

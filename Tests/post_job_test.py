@@ -18,22 +18,22 @@ class Post_Job_Test(unittest.TestCase):
 
     @data(*read_csv_data("data1.csv"))
     @unpack
-    def test_post_a_job(self,mobile_no, otp):
-        time.sleep(3)
+    def test_post_a_job(self,mobile_no, otp, industry, category , role, loc):
+        # time.sleep(3)
         self.jpp.login_Click_Post_Job_Btn( mobile_no, otp)
-        time.sleep(3)
-        self.jpp.postAJob()
-        time.sleep(3)
+        # time.sleep(5)
+        self.jpp.postAJob( industry, category , role, loc)
+        # time.sleep(3)
         result1=self.jpp.verifyJobPostSuccessMessage()
         self.ts.markFinal('job posting flow', result1, 'Verification of job posting flow')
-        time.sleep(2)
+        # time.sleep(2)
         self.jpp.clickViewSugCan()
         time.sleep(2)
         result2=self.jpp.verifyCallNowButton()
         self.ts.markFinal('contact candidate', result2, 'Candidate unlocking')
         time.sleep(2)
         self.jpp.clickCallNowButton()
-        time.sleep(2)
+        # time.sleep(2)
 
 
 

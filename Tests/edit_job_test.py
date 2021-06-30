@@ -17,10 +17,10 @@ class EditJob_Test(unittest.TestCase):
     @data(*read_csv_data("editJob.csv"))
     @unpack
     def test_edit_job(self,mobileNo, otp):
-        time.sleep(3)
+        # time.sleep(3)
         self.ejf.enterMobileNo(mobileNo)
-        time.sleep(3)
+        # time.sleep(3)
         self.ejf.enterOTP(otp)
-        time.sleep(2)
+        # time.sleep(2)
         self.ejf.editJob()
 

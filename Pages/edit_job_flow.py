@@ -6,9 +6,9 @@ class EditJobFlow(SeleniumDriver):
 
     log = cl.customLogger(logging.DEBUG)
 
-    def __init__(self, driver):
-        super().__init__(driver)
-        self.driver = driver
+    # def __init__(self, driver):
+    #     super().__init__(driver)
+    #     self.driver = driver
 
     xpath_mobileNo = "//input[@formcontrolname='mobile_no']"
     xpath_otp = "//input[@formcontrolname='otp']"
@@ -45,8 +45,10 @@ class EditJobFlow(SeleniumDriver):
     def clickJobCard(self):
         self.elementClick(self.xpath_job_card, locatorType='xpath')
     def clickActions(self):
+        self.waitForElement(self.xpath_actions, locatorType="xpath")
         self.elementClick(self.xpath_actions, locatorType="xpath")
     def clickEditJob(self):
+        self.waitForElement(self.xpath_edit_job, locatorType="xpath")
         self.elementClick(self.xpath_edit_job, locatorType="xpath")
     def clickNoOfOpenings(self):
         self.elementClick(self.xpath_no_of_openings, locatorType='xpath')
@@ -62,16 +64,16 @@ class EditJobFlow(SeleniumDriver):
     def clickSave(self):
         self.elementClick(self.xpath_save_button, locatorType='xpath')
     def addBenifits(self):
-        time.sleep(2)
+        # time.sleep(2)
         self.elementClick(self.xpath_add_benifits, locatorType='xpath')
-        time.sleep(2)
+        # time.sleep(2)
         self.elementClick(self.xpath_select_benifits, locatorType='xpath')
         self.elementClick(self.xpath_benifits_done, locatorType='xpath')
     def addLanguage(self):
         self.elementClick(self.xpath_add_lan, locatorType='xpath')
-        time.sleep(2)
+        # time.sleep(2)
         self.elementClick(self.xpath_select_lan, locatorType='xpath')
-        time.sleep(2)
+        # time.sleep(2)
         self.elementClick(self.xpath_lan_done, locatorType='xpath')
     def clickSaveEdit(self):
         self.elementClick(self.xpath_save_edit, locatorType='xpath')
@@ -82,25 +84,25 @@ class EditJobFlow(SeleniumDriver):
 
     def editJob(self):
         self.clickJobCard()
-        time.sleep(1)
+
         self.clickActions()
         time.sleep(1)
         self.clickEditJob()
         time.sleep(1)
         self.clickNoOfOpenings()
-        time.sleep(1)
+        # time.sleep(1)
         self.clickQualMasters()
-        time.sleep(1)
+        # time.sleep(1)
         self.clickAddMoreSkills()
-        time.sleep(1)
+        # time.sleep(1)
         self.enterMoreSkills('tally')
-        time.sleep(2)
+        # time.sleep(2)
         self.clickSave()
-        time.sleep(6)
+        # time.sleep(6)
         self.addBenifits()
-        time.sleep(2)
+        # time.sleep(2)
         self.addLanguage()
-        time.sleep(4)
+        # time.sleep(4)
         self.clickSaveEdit()
         
         self.screenShot("Job Edit")

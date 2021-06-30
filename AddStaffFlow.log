@@ -1,0 +1,34 @@
+06/30/2021 09:31:05 AM - AddStaffFlow - INFO: Element found with locator: //input[@formcontrolname='mobile_no'] and  locatorType: xpath
+06/30/2021 09:31:06 AM - AddStaffFlow - INFO: Sent data on element with locator:
+06/30/2021 09:31:06 AM - AddStaffFlow - INFO: Element found with locator: //input[@formcontrolname='mobile_no'] and  locatorType: xpath
+06/30/2021 09:31:06 AM - AddStaffFlow - INFO: Sent data on element with locator: 
+06/30/2021 09:31:06 AM - AddStaffFlow - INFO: Element found with locator: //input[@formcontrolname='otp'] and  locatorType: xpath
+06/30/2021 09:31:14 AM - AddStaffFlow - INFO: Sent data on element with locator:
+06/30/2021 09:31:14 AM - AddStaffFlow - INFO: Element found with locator: //input[@formcontrolname='otp'] and  locatorType: xpath
+06/30/2021 09:31:14 AM - AddStaffFlow - INFO: Sent data on element with locator: 
+06/30/2021 09:31:15 AM - AddStaffFlow - INFO: Element found with locator: //span[contains(text(),'Manage Staff')] and  locatorType: xpath
+06/30/2021 09:31:16 AM - AddStaffFlow - INFO: Clicked on element with locator: 
+06/30/2021 09:31:25 AM - AddStaffFlow - INFO: Element found with locator: //div/button[contains(text(),'Skip')] and  locatorType: xpath
+06/30/2021 09:31:25 AM - AddStaffFlow - INFO: Element Found
+06/30/2021 09:31:28 AM - AddStaffFlow - INFO: Element found with locator: //div/button[contains(text(),'Skip')] and  locatorType: xpath
+06/30/2021 09:31:28 AM - AddStaffFlow - INFO: Clicked on element with locator: 
+06/30/2021 09:31:30 AM - AddStaffFlow - INFO: Element found with locator: //span[contains(text(),'Manage Staff')] and  locatorType: xpath
+06/30/2021 09:31:30 AM - AddStaffFlow - INFO: Clicked on element with locator: 
+06/30/2021 09:31:32 AM - AddStaffFlow - INFO: Element found with locator: //span[ contains(text(),'All Staff')] and  locatorType: xpath
+06/30/2021 09:31:32 AM - AddStaffFlow - INFO: Clicked on element with locator: 
+06/30/2021 09:31:33 AM - AddStaffFlow - INFO: Element found with locator: (//span[contains(text(),'Payroll')])[2] and  locatorType: xpath
+06/30/2021 09:31:34 AM - AddStaffFlow - INFO: Clicked on element with locator: 
+06/30/2021 09:31:34 AM - AddStaffFlow - INFO: Element found with locator: //ngx-employee-payroll/div[1]/button[1] and  locatorType: xpath
+06/30/2021 09:31:34 AM - AddStaffFlow - INFO: Clicked on element with locator: 
+06/30/2021 09:31:34 AM - AddStaffFlow - INFO: Element found with locator: //input[@formcontrolname='allowance_amount'] and  locatorType: xpath
+06/30/2021 09:31:34 AM - AddStaffFlow - INFO: Sent data on element with locator:
+06/30/2021 09:31:34 AM - AddStaffFlow - INFO: Element found with locator: //div/div/input[@placeholder='Select Date...'] and  locatorType: xpath
+06/30/2021 09:31:34 AM - AddStaffFlow - INFO: Clicked on element with locator: 
+06/30/2021 09:31:35 AM - AddStaffFlow - INFO: Element found with locator: (//nb-calendar-day-cell/div[text()=' 26 '])[1] and  locatorType: xpath
+06/30/2021 09:31:35 AM - AddStaffFlow - INFO: Clicked on element with locator: 
+06/30/2021 09:31:35 AM - AddStaffFlow - INFO: Element found with locator: //textarea[@formcontrolname='allowance_description'] and  locatorType: xpath
+06/30/2021 09:31:35 AM - AddStaffFlow - INFO: Sent data on element with locator:
+06/30/2021 09:31:35 AM - AddStaffFlow - INFO: Element found with locator: //div/span[contains(text(),'Positive Attitude')] and  locatorType: xpath
+06/30/2021 09:31:35 AM - AddStaffFlow - INFO: Clicked on element with locator: 
+06/30/2021 09:31:35 AM - AddStaffFlow - INFO: Element found with locator: //button[@type='submit' and @tabindex='0'] and  locatorType: xpath
+06/30/2021 09:31:35 AM - AddStaffFlow - INFO: Clicked on element with locator: 

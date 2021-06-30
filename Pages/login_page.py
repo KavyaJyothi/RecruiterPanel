@@ -10,18 +10,20 @@ class LoginFlow(SeleniumDriver):
         super().__init__(driver)
         self.driver = driver
 
-    xpath_mobileNo = "//input[@formcontrolname='mobile_no']"
-    xpath_otp = "//input[@formcontrolname='otp']"
+    xpath_mobileNo = ("//input[@formcontrolname='mobile_no']","xpath")
+    xpath_otp =( "//input[@formcontrolname='otp']","xpath")
 
     def enterMobileNo(self,mobile):
-        self.sendKeys(mobile, self.xpath_mobileNo, locatorType='xpath')
-        self.pressEnter( self.xpath_mobileNo, locatorType='xpath')
+        self.sendKeys(mobile, self.xpath_mobileNo)
+        self.pressEnter( self.xpath_mobileNo)
     def enterOTP(self,otp):
-        self.sendKeys(otp,self.xpath_otp, locatorType='xpath')
-        self.pressEnter(self.xpath_otp, locatorType='xpath')
-    def loginFlow(self,mobile, otp):
-        self.enterMobileNo(mobile)
-        time.sleep(3)
+        self.sendKeys(otp,self.xpath_otp)
+        
+        self.pressEnter(self.xpath_otp)
+        
+    def login_flow(self,mobile, otp):
+        self.enterMobileNo(mobile)      
         self.enterOTP(otp)
-        time.sleep(2)
+        
+
 

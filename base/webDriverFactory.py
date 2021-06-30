@@ -24,9 +24,15 @@ class WebDriverFactory():
             driver = webdriver.Firefox()
         elif self.browser == "chrome":
             # Set chrome driver
-            chromedriver = "/home/kavya/tools/chromedriver_linux64/chromedriver"
+
+            chrome_options = webdriver.ChromeOptions()
+            prefs = {"profile.default_content_setting_values.notifications": 2}
+            chrome_options.add_experimental_option("prefs", prefs) 
+            
+            chromedriver = "driver_dep/chromedriver_linux64/chromedriver"
             os.environ["webdriver.chrome"] = chromedriver
-            driver = webdriver.Chrome(chromedriver)
+            driver = webdriver.Chrome(chromedriver, chrome_options=chrome_options)
+            driver.implicitly_wait(15)
 
 
         else:

@@ -1,48 +1,60 @@
-02/19/2021 11:01:47 AM - JobPostingFlow - INFO: Element found with locator: //input[@formcontrolname='mobile_no'] and  locatorType: xpath
-02/19/2021 11:01:47 AM - JobPostingFlow - INFO: Sent data on element with locator: //input[@formcontrolname='mobile_no'] locatorType: xpath
-02/19/2021 11:01:47 AM - JobPostingFlow - INFO: Element found with locator: //input[@formcontrolname='mobile_no'] and  locatorType: xpath
-02/19/2021 11:01:47 AM - JobPostingFlow - INFO: Sent data on element with locator: //input[@formcontrolname='mobile_no'] locatorType: xpath
-02/19/2021 11:01:50 AM - JobPostingFlow - INFO: Element found with locator: //input[@formcontrolname='otp'] and  locatorType: xpath
-02/19/2021 11:01:50 AM - JobPostingFlow - INFO: Sent data on element with locator: //input[@formcontrolname='otp'] locatorType: xpath
-02/19/2021 11:01:50 AM - JobPostingFlow - INFO: Element found with locator: //input[@formcontrolname='otp'] and  locatorType: xpath
-02/19/2021 11:01:50 AM - JobPostingFlow - INFO: Sent data on element with locator: //input[@formcontrolname='otp'] locatorType: xpath
-02/19/2021 11:01:53 AM - JobPostingFlow - INFO: Element found with locator: //button[@tabindex='0' ]/b[contains(text(),'+')] and  locatorType: xpath
-02/19/2021 11:01:53 AM - JobPostingFlow - INFO: Clicked on element with locator: //button[@tabindex='0' ]/b[contains(text(),'+')] locatorType: xpath
-02/19/2021 11:01:56 AM - JobPostingFlow - INFO: Element found with locator: (//div[@class='ng-input']/input[@role='combobox'])[1] and  locatorType: xpath
-02/19/2021 11:01:56 AM - JobPostingFlow - INFO: Clicked on element with locator: (//div[@class='ng-input']/input[@role='combobox'])[1] locatorType: xpath
-02/19/2021 11:01:57 AM - JobPostingFlow - INFO: Element found with locator: //div[@role='option']/div/div/div[contains(text(),'Sales & Business Development')] and  locatorType: xpath
-02/19/2021 11:01:57 AM - JobPostingFlow - INFO: Clicked on element with locator: //div[@role='option']/div/div/div[contains(text(),'Sales & Business Development')] locatorType: xpath
-02/19/2021 11:01:59 AM - JobPostingFlow - INFO: Element found with locator: (//div[@class='ng-input']/input[@role='combobox'])[2] and  locatorType: xpath
-02/19/2021 11:01:59 AM - JobPostingFlow - INFO: Clicked on element with locator: (//div[@class='ng-input']/input[@role='combobox'])[2] locatorType: xpath
-02/19/2021 11:01:59 AM - JobPostingFlow - INFO: Element found with locator: //div[@role='option']/span[contains(text(),'Retail')] and  locatorType: xpath
-02/19/2021 11:01:59 AM - JobPostingFlow - INFO: Clicked on element with locator: //div[@role='option']/span[contains(text(),'Retail')] locatorType: xpath
-02/19/2021 11:02:02 AM - JobPostingFlow - INFO: Element found with locator: (//div[@class='ng-input']/input[@role='combobox'])[3] and  locatorType: xpath
-02/19/2021 11:02:02 AM - JobPostingFlow - INFO: Clicked on element with locator: (//div[@class='ng-input']/input[@role='combobox'])[3] locatorType: xpath
-02/19/2021 11:02:04 AM - JobPostingFlow - INFO: Element found with locator: //div[@role='option']/div[contains(text(),'Area Sales Officer')] and  locatorType: xpath
-02/19/2021 11:02:04 AM - JobPostingFlow - INFO: Clicked on element with locator: //div[@role='option']/div[contains(text(),'Area Sales Officer')] locatorType: xpath
-02/19/2021 11:02:06 AM - JobPostingFlow - INFO: Element found with locator: //div/ngx-location/input[@class='mb-2 custom pl-0 ng-star-inserted'] and  locatorType: xpath
-02/19/2021 11:02:06 AM - JobPostingFlow - INFO: Sent data on element with locator: //div/ngx-location/input[@class='mb-2 custom pl-0 ng-star-inserted'] locatorType: xpath
-02/19/2021 11:02:08 AM - JobPostingFlow - INFO: Element found with locator: //nb-list-item[@role='listitem']/div/b[contains(text(),'Bengaluru')] and  locatorType: xpath
-02/19/2021 11:02:08 AM - JobPostingFlow - INFO: Clicked on element with locator: //nb-list-item[@role='listitem']/div/b[contains(text(),'Bengaluru')] locatorType: xpath
-02/19/2021 11:02:10 AM - JobPostingFlow - INFO: Element found with locator: //button[@status='danger' and @tabindex='0'  and contains(text(),'NEXT')] and  locatorType: xpath
-02/19/2021 11:02:10 AM - JobPostingFlow - INFO: Clicked on element with locator: //button[@status='danger' and @tabindex='0'  and contains(text(),'NEXT')] locatorType: xpath
-02/19/2021 11:02:12 AM - JobPostingFlow - INFO: Element found with locator: //button[@status='danger' and @tabindex='0'  and contains(text(),'NEXT')] and  locatorType: xpath
-02/19/2021 11:02:12 AM - JobPostingFlow - INFO: Clicked on element with locator: //button[@status='danger' and @tabindex='0'  and contains(text(),'NEXT')] locatorType: xpath
-02/19/2021 11:02:15 AM - JobPostingFlow - INFO: Element found with locator: //button[@status='danger' and @tabindex='0'  and contains(text(),'NEXT')] and  locatorType: xpath
-02/19/2021 11:02:15 AM - JobPostingFlow - INFO: Clicked on element with locator: //button[@status='danger' and @tabindex='0'  and contains(text(),'NEXT')] locatorType: xpath
-02/19/2021 11:02:19 AM - JobPostingFlow - INFO: Element found with locator: //button[@status='danger' and @tabindex='0'  and contains(text(),'NEXT')] and  locatorType: xpath
-02/19/2021 11:02:19 AM - JobPostingFlow - INFO: Clicked on element with locator: //button[@status='danger' and @tabindex='0'  and contains(text(),'NEXT')] locatorType: xpath
-02/19/2021 11:02:19 AM - JobPostingFlow - INFO: Element found with locator: //button[@status='danger' and @tabindex='0'  and contains(text(),'NEXT')] and  locatorType: xpath
-02/19/2021 11:02:19 AM - JobPostingFlow - INFO: Clicked on element with locator: //button[@status='danger' and @tabindex='0'  and contains(text(),'NEXT')] locatorType: xpath
-02/19/2021 11:02:23 AM - JobPostingFlow - INFO: Screenshot save to directory: /home/kavya/PycharmProjects/RecruiterPanelAutomation/base/../screenshots/publish job.1613712743391.png
-02/19/2021 11:02:26 AM - JobPostingFlow - INFO: Element found with locator: //button[@status='danger' and @tabindex='0'  and contains(text(),'Publish Job')] and  locatorType: xpath
-02/19/2021 11:02:26 AM - JobPostingFlow - INFO: Clicked on element with locator: //button[@status='danger' and @tabindex='0'  and contains(text(),'Publish Job')] locatorType: xpath
-02/19/2021 11:02:32 AM - JobPostingFlow - INFO: Element found with locator: //nb-card-header/div/small and  locatorType: xpath
-02/19/2021 11:02:32 AM - JobPostingFlow - INFO: Element Found
-02/19/2021 11:02:35 AM - JobPostingFlow - INFO: Element found with locator: //button[@tabindex='0' and contains(text(),'View suggested candidates for this job')] and  locatorType: xpath
-02/19/2021 11:02:35 AM - JobPostingFlow - INFO: Clicked on element with locator: //button[@tabindex='0' and contains(text(),'View suggested candidates for this job')] locatorType: xpath
-02/19/2021 11:02:37 AM - JobPostingFlow - INFO: Element found with locator: (//button[@tabindex='0']/img[@src='assets/svgs/call-white.svg'])[1] and  locatorType: xpath
-02/19/2021 11:02:37 AM - JobPostingFlow - INFO: Element Found
-02/19/2021 11:02:39 AM - JobPostingFlow - INFO: Element found with locator: (//button[@tabindex='0']/img[@src='assets/svgs/call-white.svg'])[1] and  locatorType: xpath
-02/19/2021 11:02:39 AM - JobPostingFlow - INFO: Clicked on element with locator: (//button[@tabindex='0']/img[@src='assets/svgs/call-white.svg'])[1] locatorType: xpath
-02/19/2021 11:02:42 AM - JobPostingFlow - INFO: Screenshot save to directory: /home/kavya/PycharmProjects/RecruiterPanelAutomation/base/../screenshots/contact status.1613712762677.png
+06/24/2021 12:52:26 PM - JobPostingFlow - INFO: Element found with locator: //input[@formcontrolname='mobile_no'] and  locatorType: xpath
+06/24/2021 12:52:26 PM - JobPostingFlow - INFO: Sent data on element with locator:
+06/24/2021 12:52:26 PM - JobPostingFlow - INFO: Element found with locator: //input[@formcontrolname='mobile_no'] and  locatorType: xpath
+06/24/2021 12:52:26 PM - JobPostingFlow - INFO: Sent data on element with locator: 
+06/24/2021 12:52:26 PM - JobPostingFlow - INFO: Element found with locator: //input[@formcontrolname='otp'] and  locatorType: xpath
+06/24/2021 12:52:34 PM - JobPostingFlow - INFO: Sent data on element with locator:
+06/24/2021 12:52:34 PM - JobPostingFlow - INFO: Element found with locator: //input[@formcontrolname='otp'] and  locatorType: xpath
+06/24/2021 12:52:34 PM - JobPostingFlow - INFO: Sent data on element with locator: 
+06/24/2021 12:52:35 PM - JobPostingFlow - INFO: Element found with locator: //button[contains(text(),' JOB')] and  locatorType: xpath
+06/24/2021 12:52:35 PM - JobPostingFlow - INFO: Clicked on element with locator: 
+06/24/2021 12:52:35 PM - JobPostingFlow - INFO: Element found with locator: (//div[@class='ng-input']/input[@role='combobox'])[1] and  locatorType: xpath
+06/24/2021 12:52:36 PM - JobPostingFlow - INFO: Sent data on element with locator:
+06/24/2021 12:52:36 PM - JobPostingFlow - INFO: Element found with locator: //div/div/div[@class='font-weight-bold'] and  locatorType: xpath
+06/24/2021 12:52:36 PM - JobPostingFlow - INFO: Clicked on element with locator: 
+06/24/2021 12:52:43 PM - JobPostingFlow - INFO: Element found with locator: //div/button[contains(text(),'Skip')] and  locatorType: xpath
+06/24/2021 12:52:43 PM - JobPostingFlow - INFO: Element Found
+06/24/2021 12:52:46 PM - JobPostingFlow - INFO: Element found with locator: //div/button[contains(text(),'Skip')] and  locatorType: xpath
+06/24/2021 12:52:46 PM - JobPostingFlow - INFO: Clicked on element with locator: 
+06/24/2021 12:52:46 PM - JobPostingFlow - INFO: Element found with locator: (//div[@class='ng-input']/input[@role='combobox'])[2] and  locatorType: xpath
+06/24/2021 12:52:46 PM - JobPostingFlow - INFO: Sent data on element with locator:
+06/24/2021 12:52:48 PM - JobPostingFlow - INFO: Element found with locator: //span[@class='ng-option-label ng-star-inserted'] and  locatorType: xpath
+06/24/2021 12:52:48 PM - JobPostingFlow - INFO: Clicked on element with locator: 
+06/24/2021 12:52:48 PM - JobPostingFlow - INFO: Element found with locator: (//div[@class='ng-input']/input[@role='combobox'])[3] and  locatorType: xpath
+06/24/2021 12:52:48 PM - JobPostingFlow - INFO: Sent data on element with locator:
+06/24/2021 12:52:48 PM - JobPostingFlow - INFO: Element found with locator: //span[contains(text(),'Add item')] and  locatorType: xpath
+06/24/2021 12:52:49 PM - JobPostingFlow - INFO: Clicked on element with locator: 
+06/24/2021 12:52:49 PM - JobPostingFlow - INFO: Element found with locator: //ngx-location/input[@type='text'] and  locatorType: xpath
+06/24/2021 12:52:49 PM - JobPostingFlow - INFO: Sent data on element with locator:
+06/24/2021 12:52:50 PM - JobPostingFlow - INFO: Element found with locator: (//b[contains(text(),' Bengaluru')])[1] and  locatorType: xpath
+06/24/2021 12:52:50 PM - JobPostingFlow - INFO: Clicked on element with locator: 
+06/24/2021 12:52:54 PM - JobPostingFlow - INFO: Element found with locator: //button[@status='danger' and @tabindex='0'  and contains(text(),'NEXT')] and  locatorType: xpath
+06/24/2021 12:52:55 PM - JobPostingFlow - INFO: Clicked on element with locator: 
+06/24/2021 12:52:57 PM - JobPostingFlow - INFO: Element found with locator: //ngx-search-add-chip/div[1]/div[2] and  locatorType: xpath
+06/24/2021 12:52:57 PM - JobPostingFlow - INFO: Clicked on element with locator: 
+06/24/2021 12:52:57 PM - JobPostingFlow - INFO: Element found with locator: //ngx-search-add-chip/div[1]/div[3] and  locatorType: xpath
+06/24/2021 12:52:57 PM - JobPostingFlow - INFO: Clicked on element with locator: 
+06/24/2021 12:52:57 PM - JobPostingFlow - INFO: Element found with locator: //ngx-search-add-chip/div[1]/div[4] and  locatorType: xpath
+06/24/2021 12:52:57 PM - JobPostingFlow - INFO: Clicked on element with locator: 
+06/24/2021 12:52:57 PM - JobPostingFlow - INFO: Element found with locator: //ngx-search-add-chip/div[1]/div[5] and  locatorType: xpath
+06/24/2021 12:52:57 PM - JobPostingFlow - INFO: Clicked on element with locator: 
+06/24/2021 12:53:01 PM - JobPostingFlow - INFO: Element found with locator: //button[@status='danger' and @tabindex='0'  and contains(text(),'NEXT')] and  locatorType: xpath
+06/24/2021 12:53:01 PM - JobPostingFlow - INFO: Clicked on element with locator: 
+06/24/2021 12:53:04 PM - JobPostingFlow - INFO: Element found with locator: //button[@status='danger' and @tabindex='0'  and contains(text(),'NEXT')] and  locatorType: xpath
+06/24/2021 12:53:04 PM - JobPostingFlow - INFO: Clicked on element with locator: 
+06/24/2021 12:53:08 PM - JobPostingFlow - INFO: Element found with locator: //button[@status='danger' and @tabindex='0'  and contains(text(),'NEXT')] and  locatorType: xpath
+06/24/2021 12:53:08 PM - JobPostingFlow - INFO: Clicked on element with locator: 
+06/24/2021 12:53:08 PM - JobPostingFlow - INFO: Element found with locator: //button[@status='danger' and @tabindex='0'  and contains(text(),'NEXT')] and  locatorType: xpath
+06/24/2021 12:53:08 PM - JobPostingFlow - INFO: Clicked on element with locator: 
+06/24/2021 12:53:09 PM - JobPostingFlow - INFO: Screenshot save to directory: /home/kavya/PycharmProjects/RecruiterPanelAutomation/base/../screenshots/publish job.1624519388944.png
+06/24/2021 12:53:09 PM - JobPostingFlow - INFO: Element found with locator: //button[@status='danger' and @tabindex='0'  and contains(text(),'Publish Job')] and  locatorType: xpath
+06/24/2021 12:53:09 PM - JobPostingFlow - INFO: Clicked on element with locator: 
+06/24/2021 12:53:14 PM - JobPostingFlow - INFO: Element found with locator: //nb-card-header/div/small and  locatorType: xpath
+06/24/2021 12:53:14 PM - JobPostingFlow - INFO: Element Found
+06/24/2021 12:53:14 PM - JobPostingFlow - INFO: Element found with locator: //button[@tabindex='0' and contains(text(),'View suggested candidates for this job')] and  locatorType: xpath
+06/24/2021 12:53:14 PM - JobPostingFlow - INFO: Clicked on element with locator: 
+06/24/2021 12:53:16 PM - JobPostingFlow - INFO: Element found with locator: (//button[contains(text(),'CALL NOW')])[1] and  locatorType: xpath
+06/24/2021 12:53:16 PM - JobPostingFlow - INFO: Element Found
+06/24/2021 12:53:19 PM - JobPostingFlow - INFO: Element found with locator: (//button[contains(text(),'CALL NOW')])[1] and  locatorType: xpath
+06/24/2021 12:53:19 PM - JobPostingFlow - INFO: Clicked on element with locator: 
+06/24/2021 12:53:22 PM - JobPostingFlow - INFO: Screenshot save to directory: /home/kavya/PycharmProjects/RecruiterPanelAutomation/base/../screenshots/contact status.1624519402122.png

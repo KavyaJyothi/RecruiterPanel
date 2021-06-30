@@ -32,6 +32,7 @@ class JobPostingFlowAddCompany(SeleniumDriver):
 
     def enterOTP(self, otp):
         self.sendKeys(otp, self.xpath_otp, locatorType='xpath')
+        
         self.pressEnter(self.xpath_otp, locatorType='xpath')
 
     def clickPostAJob(self):

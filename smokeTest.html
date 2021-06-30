@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Test Report</title>
+    <link href="assets/style.css" rel="stylesheet" type="text/css"/></head>
+  <body onLoad="init()">
+    <script>/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this file,
+ * You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+
+function toArray(iter) {
+    if (iter === null) {
+        return null;
+    }
+    return Array.prototype.slice.call(iter);
+}
+
+function find(selector, elem) { // eslint-disable-line no-redeclare
+    if (!elem) {
+        elem = document;
+    }
+    return elem.querySelector(selector);
+}
+
+function findAll(selector, elem) {
+    if (!elem) {
+        elem = document;
+    }
+    return toArray(elem.querySelectorAll(selector));
+}
+
+function sortColumn(elem) {
+    toggleSortStates(elem);
+    const colIndex = toArray(elem.parentNode.childNodes).indexOf(elem);
+    let key;
+    if (elem.classList.contains('result')) {
+        key = keyResult;
+    } else if (elem.classList.contains('links')) {
+        key = keyLink;
+    } else {
+        key = keyAlpha;
+    }
+    sortTable(elem, key(colIndex));
+}
+
+function showAllExtras() { // eslint-disable-line no-unused-vars
+    findAll('.col-result').forEach(showExtras);
+}
+
+function hideAllExtras() { // eslint-disable-line no-unused-vars
+    findAll('.col-result').forEach(hideExtras);
+}
+
+function showExtras(colresultElem) {
+    const extras = colresultElem.parentNode.nextElementSibling;
+    const expandcollapse = colresultElem.firstElementChild;
+    extras.classList.remove('collapsed');
+    expandcollapse.classList.remove('expander');
+    expandcollapse.classList.add('collapser');
+}
+
+function hideExtras(colresultElem) {
+    const extras = colresultElem.parentNode.nextElementSibling;
+    const expandcollapse = colresultElem.firstElementChild;
+    extras.classList.add('collapsed');
+    expandcollapse.classList.remove('collapser');
+    expandcollapse.classList.add('expander');
+}
+
+function showFilters() {
+    const filterItems = document.getElementsByClassName('filter');
+    for (let i = 0; i < filterItems.length; i++)
+        filterItems[i].hidden = false;
+}
+
+function addCollapse() {
+    // Add links for show/hide all
+    const resulttable = find('table#results-table');
+    const showhideall = document.createElement('p');
+    showhideall.innerHTML = '<a href="javascript:showAllExtras()">Show all details</a> / ' +
+                            '<a href="javascript:hideAllExtras()">Hide all details</a>';
+    resulttable.parentElement.insertBefore(showhideall, resulttable);
+
+    // Add show/hide link to each result
+    findAll('.col-result').forEach(function(elem) {
+        const collapsed = getQueryParameter('collapsed') || 'Passed';
+        const extras = elem.parentNode.nextElementSibling;
+        const expandcollapse = document.createElement('span');
+        if (extras.classList.contains('collapsed')) {
+            expandcollapse.classList.add('expander');
+        } else if (collapsed.includes(elem.innerHTML)) {
+            extras.classList.add('collapsed');
+            expandcollapse.classList.add('expander');
+        } else {
+            expandcollapse.classList.add('collapser');
+        }
+        elem.appendChild(expandcollapse);
+
+        elem.addEventListener('click', function(event) {
+            if (event.currentTarget.parentNode.nextElementSibling.classList.contains('collapsed')) {
+                showExtras(event.currentTarget);
+            } else {
+                hideExtras(event.currentTarget);
+            }
+        });
+    });
+}
+
+function getQueryParameter(name) {
+    const match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+    return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+}
+
+function init () { // eslint-disable-line no-unused-vars
+    resetSortHeaders();
+
+    addCollapse();
+
+    showFilters();
+
+    sortColumn(find('.initial-sort'));
+
+    findAll('.sortable').forEach(function(elem) {
+        elem.addEventListener('click',
+            function() {
+                sortColumn(elem);
+            }, false);
+    });
+}
+
+function sortTable(clicked, keyFunc) {
+    const rows = findAll('.results-table-row');
+    const reversed = !clicked.classList.contains('asc');
+    const sortedRows = sort(rows, keyFunc, reversed);
+    /* Whole table is removed here because browsers acts much slower
+     * when appending existing elements.
+     */
+    const thead = document.getElementById('results-table-head');
+    document.getElementById('results-table').remove();
+    const parent = document.createElement('table');
+    parent.id = 'results-table';
+    parent.appendChild(thead);
+    sortedRows.forEach(function(elem) {
+        parent.appendChild(elem);
+    });
+    document.getElementsByTagName('BODY')[0].appendChild(parent);
+}
+
+function sort(items, keyFunc, reversed) {
+    const sortArray = items.map(function(item, i) {
+        return [keyFunc(item), i];
+    });
+
+    sortArray.sort(function(a, b) {
+        const keyA = a[0];
+        const keyB = b[0];
+
+        if (keyA == keyB) return 0;
+
+        if (reversed) {
+            return keyA < keyB ? 1 : -1;
+        } else {
+            return keyA > keyB ? 1 : -1;
+        }
+    });
+
+    return sortArray.map(function(item) {
+        const index = item[1];
+        return items[index];
+    });
+}
+
+function keyAlpha(colIndex) {
+    return function(elem) {
+        return elem.childNodes[1].childNodes[colIndex].firstChild.data.toLowerCase();
+    };
+}
+
+function keyLink(colIndex) {
+    return function(elem) {
+        const dataCell = elem.childNodes[1].childNodes[colIndex].firstChild;
+        return dataCell == null ? '' : dataCell.innerText.toLowerCase();
+    };
+}
+
+function keyResult(colIndex) {
+    return function(elem) {
+        const strings = ['Error', 'Failed', 'Rerun', 'XFailed', 'XPassed',
+            'Skipped', 'Passed'];
+        return strings.indexOf(elem.childNodes[1].childNodes[colIndex].firstChild.data);
+    };
+}
+
+function resetSortHeaders() {
+    findAll('.sort-icon').forEach(function(elem) {
+        elem.parentNode.removeChild(elem);
+    });
+    findAll('.sortable').forEach(function(elem) {
+        const icon = document.createElement('div');
+        icon.className = 'sort-icon';
+        icon.textContent = 'vvv';
+        elem.insertBefore(icon, elem.firstChild);
+        elem.classList.remove('desc', 'active');
+        elem.classList.add('asc', 'inactive');
+    });
+}
+
+function toggleSortStates(elem) {
+    //if active, toggle between asc and desc
+    if (elem.classList.contains('active')) {
+        elem.classList.toggle('asc');
+        elem.classList.toggle('desc');
+    }
+
+    //if inactive, reset all other functions and add ascending active
+    if (elem.classList.contains('inactive')) {
+        resetSortHeaders();
+        elem.classList.remove('inactive');
+        elem.classList.add('active');
+    }
+}
+
+function isAllRowsHidden(value) {
+    return value.hidden == false;
+}
+
+function filterTable(elem) { // eslint-disable-line no-unused-vars
+    const outcomeAtt = 'data-test-result';
+    const outcome = elem.getAttribute(outcomeAtt);
+    const classOutcome = outcome + ' results-table-row';
+    const outcomeRows = document.getElementsByClassName(classOutcome);
+
+    for(let i = 0; i < outcomeRows.length; i++){
+        outcomeRows[i].hidden = !elem.checked;
+    }
+
+    const rows = findAll('.results-table-row').filter(isAllRowsHidden);
+    const allRowsHidden = rows.length == 0 ? true : false;
+    const notFoundMessage = document.getElementById('not-found-message');
+    notFoundMessage.hidden = !allRowsHidden;
+}
+</script>
+    <h1>smokeTest.html</h1>
+    <p>Report generated on 24-Feb-2021 at 15:39:59 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v3.1.1</p>
+    <h2>Environment</h2>
+    <table id="environment">
+      <tr>
+        <td>JAVA_HOME</td>
+        <td>/usr/lib/jvm/java-1.11.0-openjdk-amd64</td></tr>
+      <tr>
+        <td>Packages</td>
+        <td>{"pluggy": "0.13.1", "py": "1.10.0", "pytest": "6.2.2"}</td></tr>
+      <tr>
+        <td>Platform</td>
+        <td>Linux-5.4.0-60-generic-x86_64-with-Ubuntu-18.04-bionic</td></tr>
+      <tr>
+        <td>Plugins</td>
+        <td>{"html": "3.1.1", "metadata": "1.11.0"}</td></tr>
+      <tr>
+        <td>Python</td>
+        <td>3.6.9</td></tr></table>
+    <h2>Summary</h2>
+    <p>3 tests ran in 100.78 seconds. </p>
+    <p class="filter" hidden="true">(Un)check the boxes to filter the results.</p><input checked="true" class="filter" data-test-result="passed" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="passed">3 passed</span>, <input checked="true" class="filter" data-test-result="skipped" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="skipped">0 skipped</span>, <input checked="true" class="filter" data-test-result="failed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="failed">0 failed</span>, <input checked="true" class="filter" data-test-result="error" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="error">0 errors</span>, <input checked="true" class="filter" data-test-result="xfailed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xfailed">0 expected failures</span>, <input checked="true" class="filter" data-test-result="xpassed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xpassed">0 unexpected passes</span>
+    <h2>Results</h2>
+    <table id="results-table">
+      <thead id="results-table-head">
+        <tr>
+          <th class="sortable result initial-sort" col="result">Result</th>
+          <th class="sortable" col="name">Test</th>
+          <th class="sortable" col="duration">Duration</th>
+          <th class="sortable links" col="links">Links</th></tr>
+        <tr hidden="true" id="not-found-message">
+          <th colspan="4">No results found. Try to check the filters</th></tr></thead>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">Tests/smoke_test.py::EditJob_Test::test_edit_job_1___9538596331____495004__</td>
+          <td class="col-duration">46.28</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -----------------------------Captured stdout setup------------------------------ <br/>Running one time setUp
+<br/> ------------------------------Captured stderr call------------------------------ <br/>  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/bin/py.test&quot;, line 8, in &lt;module&gt;
+    sys.exit(console_main())
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/_pytest/config/__init__.py&quot;, line 185, in console_main
+    code = main()
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/_pytest/config/__init__.py&quot;, line 163, in main
+    config=config
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/pluggy/hooks.py&quot;, line 286, in __call__
+    return self._hookexec(self, self.get_hookimpls(), kwargs)
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/pluggy/manager.py&quot;, line 93, in _hookexec
+    return self._inner_hookexec(hook, methods, kwargs)
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/pluggy/manager.py&quot;, line 87, in &lt;lambda&gt;
+    firstresult=hook.spec.opts.get(&quot;firstresult&quot;) if hook.spec else False,
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/pluggy/callers.py&quot;, line 187, in _multicall
+    res = hook_impl.function(*args)
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/_pytest/main.py&quot;, line 316, in pytest_cmdline_main
+    return wrap_session(config, _main)
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/_pytest/main.py&quot;, line 269, in wrap_session
+    session.exitstatus = doit(config, session) or 0
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/_pytest/main.py&quot;, line 323, in _main
+    config.hook.pytest_runtestloop(session=session)
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/pluggy/hooks.py&quot;, line 286, in __call__
+    return self._hookexec(self, self.get_hookimpls(), kwargs)
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/pluggy/manager.py&quot;, line 93, in _hookexec
+    return self._inner_hookexec(hook, methods, kwargs)
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/pluggy/manager.py&quot;, line 87, in &lt;lambda&gt;
+    firstresult=hook.spec.opts.get(&quot;firstresult&quot;) if hook.spec else False,
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/pluggy/callers.py&quot;, line 187, in _multicall
+    res = hook_impl.function(*args)
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/_pytest/main.py&quot;, line 348, in pytest_runtestloop
+    item.config.hook.pytest_runtest_protocol(item=item, nextitem=nextitem)
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/pluggy/hooks.py&quot;, line 286, in __call__
+    return self._hookexec(self, self.get_hookimpls(), kwargs)
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/pluggy/manager.py&quot;, line 93, in _hookexec
+    return self._inner_hookexec(hook, methods, kwargs)
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/pluggy/manager.py&quot;, line 87, in &lt;lambda&gt;
+    firstresult=hook.spec.opts.get(&quot;firstresult&quot;) if hook.spec else False,
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/pluggy/callers.py&quot;, line 187, in _multicall
+    res = hook_impl.function(*args)
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/_pytest/runner.py&quot;, line 109, in pytest_runtest_protocol
+    runtestprotocol(item, nextitem=nextitem)
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/_pytest/runner.py&quot;, line 126, in runtestprotocol
+    reports.append(call_and_report(item, &quot;call&quot;, log))
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/_pytest/runner.py&quot;, line 215, in call_and_report
+    call = call_runtest_hook(item, when, **kwds)
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/_pytest/runner.py&quot;, line 255, in call_runtest_hook
+    lambda: ihook(item=item, **kwds), when=when, reraise=reraise
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/_pytest/runner.py&quot;, line 311, in from_call
+    result: Optional[TResult] = func()
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/_pytest/runner.py&quot;, line 255, in &lt;lambda&gt;
+    lambda: ihook(item=item, **kwds), when=when, reraise=reraise
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/pluggy/hooks.py&quot;, line 286, in __call__
+    return self._hookexec(self, self.get_hookimpls(), kwargs)
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/pluggy/manager.py&quot;, line 93, in _hookexec
+    return self._inner_hookexec(hook, methods, kwargs)
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/pluggy/manager.py&quot;, line 87, in &lt;lambda&gt;
+    firstresult=hook.spec.opts.get(&quot;firstresult&quot;) if hook.spec else False,
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/pluggy/callers.py&quot;, line 187, in _multicall
+    res = hook_impl.function(*args)
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/_pytest/runner.py&quot;, line 162, in pytest_runtest_call
+    item.runtest()
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/_pytest/unittest.py&quot;, line 321, in runtest
+    self._testcase(result=self)  # type: ignore[arg-type]
+  File &quot;/usr/lib/python3.6/unittest/case.py&quot;, line 653, in __call__
+    return self.run(*args, **kwds)
+  File &quot;/usr/lib/python3.6/unittest/case.py&quot;, line 605, in run
+    testMethod()
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/ddt.py&quot;, line 182, in wrapper
+    return func(self, *args, **kwargs)
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/Tests/edit_job_test.py&quot;, line 25, in test_edit_job
+    self.ejf.editJob()
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/Pages/edit_job_flow.py&quot;, line 88, in editJob
+    self.clickActions()
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/Pages/edit_job_flow.py&quot;, line 48, in clickActions
+    self.waitForElement(self.xpath_actions, locatorType=&quot;xpath&quot;)
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/base/selenium_driver.py&quot;, line 215, in waitForElement
+    print_stack()
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/bin/py.test&quot;, line 8, in &lt;module&gt;
+    sys.exit(console_main())
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/_pytest/config/__init__.py&quot;, line 185, in console_main
+    code = main()
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/_pytest/config/__init__.py&quot;, line 163, in main
+    config=config
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/pluggy/hooks.py&quot;, line 286, in __call__
+    return self._hookexec(self, self.get_hookimpls(), kwargs)
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/pluggy/manager.py&quot;, line 93, in _hookexec
+    return self._inner_hookexec(hook, methods, kwargs)
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/pluggy/manager.py&quot;, line 87, in &lt;lambda&gt;
+    firstresult=hook.spec.opts.get(&quot;firstresult&quot;) if hook.spec else False,
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/pluggy/callers.py&quot;, line 187, in _multicall
+    res = hook_impl.function(*args)
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/_pytest/main.py&quot;, line 316, in pytest_cmdline_main
+    return wrap_session(config, _main)
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/_pytest/main.py&quot;, line 269, in wrap_session
+    session.exitstatus = doit(config, session) or 0
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/_pytest/main.py&quot;, line 323, in _main
+    config.hook.pytest_runtestloop(session=session)
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/pluggy/hooks.py&quot;, line 286, in __call__
+    return self._hookexec(self, self.get_hookimpls(), kwargs)
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/pluggy/manager.py&quot;, line 93, in _hookexec
+    return self._inner_hookexec(hook, methods, kwargs)
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/pluggy/manager.py&quot;, line 87, in &lt;lambda&gt;
+    firstresult=hook.spec.opts.get(&quot;firstresult&quot;) if hook.spec else False,
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/pluggy/callers.py&quot;, line 187, in _multicall
+    res = hook_impl.function(*args)
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/_pytest/main.py&quot;, line 348, in pytest_runtestloop
+    item.config.hook.pytest_runtest_protocol(item=item, nextitem=nextitem)
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/pluggy/hooks.py&quot;, line 286, in __call__
+    return self._hookexec(self, self.get_hookimpls(), kwargs)
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/pluggy/manager.py&quot;, line 93, in _hookexec
+    return self._inner_hookexec(hook, methods, kwargs)
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/pluggy/manager.py&quot;, line 87, in &lt;lambda&gt;
+    firstresult=hook.spec.opts.get(&quot;firstresult&quot;) if hook.spec else False,
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/pluggy/callers.py&quot;, line 187, in _multicall
+    res = hook_impl.function(*args)
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/_pytest/runner.py&quot;, line 109, in pytest_runtest_protocol
+    runtestprotocol(item, nextitem=nextitem)
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/_pytest/runner.py&quot;, line 126, in runtestprotocol
+    reports.append(call_and_report(item, &quot;call&quot;, log))
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/_pytest/runner.py&quot;, line 215, in call_and_report
+    call = call_runtest_hook(item, when, **kwds)
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/_pytest/runner.py&quot;, line 255, in call_runtest_hook
+    lambda: ihook(item=item, **kwds), when=when, reraise=reraise
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/_pytest/runner.py&quot;, line 311, in from_call
+    result: Optional[TResult] = func()
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/_pytest/runner.py&quot;, line 255, in &lt;lambda&gt;
+    lambda: ihook(item=item, **kwds), when=when, reraise=reraise
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/pluggy/hooks.py&quot;, line 286, in __call__
+    return self._hookexec(self, self.get_hookimpls(), kwargs)
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/pluggy/manager.py&quot;, line 93, in _hookexec
+    return self._inner_hookexec(hook, methods, kwargs)
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/pluggy/manager.py&quot;, line 87, in &lt;lambda&gt;
+    firstresult=hook.spec.opts.get(&quot;firstresult&quot;) if hook.spec else False,
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/pluggy/callers.py&quot;, line 187, in _multicall
+    res = hook_impl.function(*args)
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/_pytest/runner.py&quot;, line 162, in pytest_runtest_call
+    item.runtest()
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/_pytest/unittest.py&quot;, line 321, in runtest
+    self._testcase(result=self)  # type: ignore[arg-type]
+  File &quot;/usr/lib/python3.6/unittest/case.py&quot;, line 653, in __call__
+    return self.run(*args, **kwds)
+  File &quot;/usr/lib/python3.6/unittest/case.py&quot;, line 605, in run
+    testMethod()
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/ddt.py&quot;, line 182, in wrapper
+    return func(self, *args, **kwargs)
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/Tests/edit_job_test.py&quot;, line 25, in test_edit_job
+    self.ejf.editJob()
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/Pages/edit_job_flow.py&quot;, line 90, in editJob
+    self.clickEditJob()
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/Pages/edit_job_flow.py&quot;, line 51, in clickEditJob
+    self.waitForElement(self.xpath_edit_job, locatorType=&quot;xpath&quot;)
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/base/selenium_driver.py&quot;, line 215, in waitForElement
+    print_stack()
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/bin/py.test&quot;, line 8, in &lt;module&gt;
+    sys.exit(console_main())
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/_pytest/config/__init__.py&quot;, line 185, in console_main
+    code = main()
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/_pytest/config/__init__.py&quot;, line 163, in main
+    config=config
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/pluggy/hooks.py&quot;, line 286, in __call__
+    return self._hookexec(self, self.get_hookimpls(), kwargs)
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/pluggy/manager.py&quot;, line 93, in _hookexec
+    return self._inner_hookexec(hook, methods, kwargs)
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/pluggy/manager.py&quot;, line 87, in &lt;lambda&gt;
+    firstresult=hook.spec.opts.get(&quot;firstresult&quot;) if hook.spec else False,
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/pluggy/callers.py&quot;, line 187, in _multicall
+    res = hook_impl.function(*args)
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/_pytest/main.py&quot;, line 316, in pytest_cmdline_main
+    return wrap_session(config, _main)
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/_pytest/main.py&quot;, line 269, in wrap_session
+    session.exitstatus = doit(config, session) or 0
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/_pytest/main.py&quot;, line 323, in _main
+    config.hook.pytest_runtestloop(session=session)
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/pluggy/hooks.py&quot;, line 286, in __call__
+    return self._hookexec(self, self.get_hookimpls(), kwargs)
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/pluggy/manager.py&quot;, line 93, in _hookexec
+    return self._inner_hookexec(hook, methods, kwargs)
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/pluggy/manager.py&quot;, line 87, in &lt;lambda&gt;
+    firstresult=hook.spec.opts.get(&quot;firstresult&quot;) if hook.spec else False,
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/pluggy/callers.py&quot;, line 187, in _multicall
+    res = hook_impl.function(*args)
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/_pytest/main.py&quot;, line 348, in pytest_runtestloop
+    item.config.hook.pytest_runtest_protocol(item=item, nextitem=nextitem)
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/pluggy/hooks.py&quot;, line 286, in __call__
+    return self._hookexec(self, self.get_hookimpls(), kwargs)
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/pluggy/manager.py&quot;, line 93, in _hookexec
+    return self._inner_hookexec(hook, methods, kwargs)
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/pluggy/manager.py&quot;, line 87, in &lt;lambda&gt;
+    firstresult=hook.spec.opts.get(&quot;firstresult&quot;) if hook.spec else False,
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/pluggy/callers.py&quot;, line 187, in _multicall
+    res = hook_impl.function(*args)
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/_pytest/runner.py&quot;, line 109, in pytest_runtest_protocol
+    runtestprotocol(item, nextitem=nextitem)
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/_pytest/runner.py&quot;, line 126, in runtestprotocol
+    reports.append(call_and_report(item, &quot;call&quot;, log))
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/_pytest/runner.py&quot;, line 215, in call_and_report
+    call = call_runtest_hook(item, when, **kwds)
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/_pytest/runner.py&quot;, line 255, in call_runtest_hook
+    lambda: ihook(item=item, **kwds), when=when, reraise=reraise
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/_pytest/runner.py&quot;, line 311, in from_call
+    result: Optional[TResult] = func()
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/_pytest/runner.py&quot;, line 255, in &lt;lambda&gt;
+    lambda: ihook(item=item, **kwds), when=when, reraise=reraise
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/pluggy/hooks.py&quot;, line 286, in __call__
+    return self._hookexec(self, self.get_hookimpls(), kwargs)
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/pluggy/manager.py&quot;, line 93, in _hookexec
+    return self._inner_hookexec(hook, methods, kwargs)
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/pluggy/manager.py&quot;, line 87, in &lt;lambda&gt;
+    firstresult=hook.spec.opts.get(&quot;firstresult&quot;) if hook.spec else False,
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/pluggy/callers.py&quot;, line 187, in _multicall
+    res = hook_impl.function(*args)
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/_pytest/runner.py&quot;, line 162, in pytest_runtest_call
+    item.runtest()
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/_pytest/unittest.py&quot;, line 321, in runtest
+    self._testcase(result=self)  # type: ignore[arg-type]
+  File &quot;/usr/lib/python3.6/unittest/case.py&quot;, line 653, in __call__
+    return self.run(*args, **kwds)
+  File &quot;/usr/lib/python3.6/unittest/case.py&quot;, line 605, in run
+    testMethod()
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/recruitervenv/lib/python3.6/site-packages/ddt.py&quot;, line 182, in wrapper
+    return func(self, *args, **kwargs)
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/Tests/edit_job_test.py&quot;, line 25, in test_edit_job
+    self.ejf.editJob()
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/Pages/edit_job_flow.py&quot;, line 104, in editJob
+    self.addLanguage()
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/Pages/edit_job_flow.py&quot;, line 75, in addLanguage
+    self.elementClick(self.xpath_select_lan, locatorType=&#x27;xpath&#x27;)
+  File &quot;/home/kavya/PycharmProjects/RecruiterPanelAutomation/base/selenium_driver.py&quot;, line 110, in elementClick
+    print_stack()
+<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     EditJobFlow:selenium_driver.py:83 Element found with locator: //input[@formcontrolname=&#x27;mobile_no&#x27;] and  locatorType: xpath
+INFO     EditJobFlow:selenium_driver.py:167 Sent data on element with locator: //input[@formcontrolname=&#x27;mobile_no&#x27;] locatorType: xpath
+INFO     EditJobFlow:selenium_driver.py:83 Element found with locator: //input[@formcontrolname=&#x27;mobile_no&#x27;] and  locatorType: xpath
+INFO     EditJobFlow:selenium_driver.py:155 Sent data on element with locator: //input[@formcontrolname=&#x27;mobile_no&#x27;] locatorType: xpath
+INFO     EditJobFlow:selenium_driver.py:83 Element found with locator: //input[@formcontrolname=&#x27;otp&#x27;] and  locatorType: xpath
+INFO     EditJobFlow:selenium_driver.py:167 Sent data on element with locator: //input[@formcontrolname=&#x27;otp&#x27;] locatorType: xpath
+INFO     EditJobFlow:selenium_driver.py:83 Element found with locator: //input[@formcontrolname=&#x27;otp&#x27;] and  locatorType: xpath
+INFO     EditJobFlow:selenium_driver.py:155 Sent data on element with locator: //input[@formcontrolname=&#x27;otp&#x27;] locatorType: xpath
+INFO     EditJobFlow:selenium_driver.py:83 Element found with locator: (//nb-card/div[@class=&#x27;nb-card-div&#x27;])[1] and  locatorType: xpath
+INFO     EditJobFlow:selenium_driver.py:106 Clicked on element with locator: (//nb-card/div[@class=&#x27;nb-card-div&#x27;])[1] locatorType: xpath
+INFO     EditJobFlow:selenium_driver.py:205 Waiting for maximum :: 10 :: seconds for element to be clickable
+INFO     EditJobFlow:selenium_driver.py:214 Element not appeared on the web page
+INFO     EditJobFlow:selenium_driver.py:83 Element found with locator: (//nb-select/button[@type=&#x27;button&#x27;])[1] and  locatorType: xpath
+INFO     EditJobFlow:selenium_driver.py:106 Clicked on element with locator: (//nb-select/button[@type=&#x27;button&#x27;])[1] locatorType: xpath
+INFO     EditJobFlow:selenium_driver.py:205 Waiting for maximum :: 10 :: seconds for element to be clickable
+INFO     EditJobFlow:selenium_driver.py:214 Element not appeared on the web page
+INFO     EditJobFlow:selenium_driver.py:83 Element found with locator: //div/ul[@class=&#x27;options-list&#x27;]/nb-option[@value=&#x27;editjob&#x27;] and  locatorType: xpath
+INFO     EditJobFlow:selenium_driver.py:106 Clicked on element with locator: //div/ul[@class=&#x27;options-list&#x27;]/nb-option[@value=&#x27;editjob&#x27;] locatorType: xpath
+INFO     EditJobFlow:selenium_driver.py:83 Element found with locator: (//div/span[contains(text(),&#x27;10+&#x27;)])[1] and  locatorType: xpath
+INFO     EditJobFlow:selenium_driver.py:106 Clicked on element with locator: (//div/span[contains(text(),&#x27;10+&#x27;)])[1] locatorType: xpath
+INFO     EditJobFlow:selenium_driver.py:83 Element found with locator: //div/span[contains(text(),&#x27;Masters&#x27;)] and  locatorType: xpath
+INFO     EditJobFlow:selenium_driver.py:106 Clicked on element with locator: //div/span[contains(text(),&#x27;Masters&#x27;)] locatorType: xpath
+INFO     EditJobFlow:selenium_driver.py:83 Element found with locator: //div/span/span[contains(text(),&#x27; Add More Skills&#x27;)] and  locatorType: xpath
+INFO     EditJobFlow:selenium_driver.py:106 Clicked on element with locator: //div/span/span[contains(text(),&#x27; Add More Skills&#x27;)] locatorType: xpath
+INFO     EditJobFlow:selenium_driver.py:83 Element found with locator: //div[@class=&#x27;ng-select-container&#x27;]/div[@class=&#x27;ng-value-container&#x27;]/div[@class=&#x27;ng-input&#x27;]/input and  locatorType: xpath
+INFO     EditJobFlow:selenium_driver.py:167 Sent data on element with locator: //div[@class=&#x27;ng-select-container&#x27;]/div[@class=&#x27;ng-value-container&#x27;]/div[@class=&#x27;ng-input&#x27;]/input locatorType: xpath
+INFO     EditJobFlow:selenium_driver.py:83 Element found with locator: //div[@role=&#x27;option&#x27;]/span and  locatorType: xpath
+INFO     EditJobFlow:selenium_driver.py:106 Clicked on element with locator: //div[@role=&#x27;option&#x27;]/span locatorType: xpath
+INFO     EditJobFlow:selenium_driver.py:83 Element found with locator: (//div/button[@tabindex=&#x27;0&#x27; and contains(text(),&#x27;Save&#x27;)])[2] and  locatorType: xpath
+INFO     EditJobFlow:selenium_driver.py:106 Clicked on element with locator: (//div/button[@tabindex=&#x27;0&#x27; and contains(text(),&#x27;Save&#x27;)])[2] locatorType: xpath
+INFO     EditJobFlow:selenium_driver.py:83 Element found with locator: //span[contains(text(),&#x27; Add Benefits&#x27;)] and  locatorType: xpath
+INFO     EditJobFlow:selenium_driver.py:106 Clicked on element with locator: //span[contains(text(),&#x27; Add Benefits&#x27;)] locatorType: xpath
+INFO     EditJobFlow:selenium_driver.py:83 Element found with locator: //nb-card/nb-card-body/div[9] and  locatorType: xpath
+INFO     EditJobFlow:selenium_driver.py:106 Clicked on element with locator: //nb-card/nb-card-body/div[9] locatorType: xpath
+INFO     EditJobFlow:selenium_driver.py:83 Element found with locator: //button[contains(text(),&#x27;Done&#x27;)]  and  locatorType: xpath
+INFO     EditJobFlow:selenium_driver.py:106 Clicked on element with locator: //button[contains(text(),&#x27;Done&#x27;)]  locatorType: xpath
+INFO     EditJobFlow:selenium_driver.py:83 Element found with locator: //span[contains(text(),&#x27; Add Language&#x27;)] and  locatorType: xpath
+INFO     EditJobFlow:selenium_driver.py:106 Clicked on element with locator: //span[contains(text(),&#x27; Add Language&#x27;)] locatorType: xpath
+INFO     EditJobFlow:selenium_driver.py:83 Element found with locator: //nb-card/nb-card-body/div[3] and  locatorType: xpath
+INFO     EditJobFlow:selenium_driver.py:109 Cannot click on the element with locator: //nb-card/nb-card-body/div[3] locatorType: xpath
+INFO     EditJobFlow:selenium_driver.py:83 Element found with locator: //button[contains(text(),&#x27;Done&#x27;)]  and  locatorType: xpath
+INFO     EditJobFlow:selenium_driver.py:106 Clicked on element with locator: //button[contains(text(),&#x27;Done&#x27;)]  locatorType: xpath
+INFO     EditJobFlow:selenium_driver.py:83 Element found with locator: (//button[contains(text(),&#x27;Save&#x27;)])[2] and  locatorType: xpath
+INFO     EditJobFlow:selenium_driver.py:106 Clicked on element with locator: (//button[contains(text(),&#x27;Save&#x27;)])[2] locatorType: xpath
+INFO     EditJobFlow:selenium_driver.py:35 Screenshot save to directory: /home/kavya/PycharmProjects/RecruiterPanelAutomation/base/../screenshots/Job Edit.1614161342955.png<br/> ----------------------------Captured stdout teardown---------------------------- <br/>Running one time tearDown
+<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">Tests/smoke_test.py::PlanPurchase_Test::test_purchasePlans_1___9538596331____495004____kavya_b_workex_xyz__</td>
+          <td class="col-duration">16.87</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -----------------------------Captured stdout setup------------------------------ <br/>Running one time setUp
+<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     PlansPage:selenium_driver.py:83 Element found with locator: //input[@formcontrolname=&#x27;mobile_no&#x27;] and  locatorType: xpath
+INFO     PlansPage:selenium_driver.py:167 Sent data on element with locator: //input[@formcontrolname=&#x27;mobile_no&#x27;] locatorType: xpath
+INFO     PlansPage:selenium_driver.py:83 Element found with locator: //input[@formcontrolname=&#x27;mobile_no&#x27;] and  locatorType: xpath
+INFO     PlansPage:selenium_driver.py:155 Sent data on element with locator: //input[@formcontrolname=&#x27;mobile_no&#x27;] locatorType: xpath
+INFO     PlansPage:selenium_driver.py:83 Element found with locator: //input[@formcontrolname=&#x27;otp&#x27;] and  locatorType: xpath
+INFO     PlansPage:selenium_driver.py:167 Sent data on element with locator: //input[@formcontrolname=&#x27;otp&#x27;] locatorType: xpath
+INFO     PlansPage:selenium_driver.py:83 Element found with locator: //input[@formcontrolname=&#x27;otp&#x27;] and  locatorType: xpath
+INFO     PlansPage:selenium_driver.py:155 Sent data on element with locator: //input[@formcontrolname=&#x27;otp&#x27;] locatorType: xpath
+INFO     PlansPage:selenium_driver.py:83 Element found with locator: //span[@class=&#x27;menu-title&#x27; and contains(text(),&#x27;Plans&#x27;)] and  locatorType: xpath
+INFO     PlansPage:selenium_driver.py:106 Clicked on element with locator: //span[@class=&#x27;menu-title&#x27; and contains(text(),&#x27;Plans&#x27;)] locatorType: xpath
+INFO     PlansPage:selenium_driver.py:83 Element found with locator: (//button[contains(text(),&#x27;BUY NOW&#x27;)])[1] and  locatorType: xpath
+INFO     PlansPage:selenium_driver.py:106 Clicked on element with locator: (//button[contains(text(),&#x27;BUY NOW&#x27;)])[1] locatorType: xpath
+INFO     PlansPage:plans_page.py:48 switched to frame
+INFO     PlansPage:selenium_driver.py:83 Element found with locator: contact and  locatorType: id
+INFO     PlansPage:selenium_driver.py:167 Sent data on element with locator: contact locatorType: id
+INFO     PlansPage:selenium_driver.py:96 Element found with locator: email and  locatorType: id
+INFO     PlansPage:selenium_driver.py:83 Element found with locator: email and  locatorType: id
+INFO     PlansPage:selenium_driver.py:167 Sent data on element with locator: email locatorType: id
+INFO     PlansPage:selenium_driver.py:83 Element found with locator: footer-cta and  locatorType: id
+INFO     PlansPage:selenium_driver.py:106 Clicked on element with locator: footer-cta locatorType: id
+INFO     PlansPage:selenium_driver.py:83 Element found with locator: //div[@class=&#x27;svelte-13rsokc&#x27;]/div[@slot=&#x27;title&#x27; and contains(text(),&#x27;Netbanking&#x27;)] and  locatorType: xpath
+INFO     PlansPage:selenium_driver.py:106 Clicked on element with locator: //div[@class=&#x27;svelte-13rsokc&#x27;]/div[@slot=&#x27;title&#x27; and contains(text(),&#x27;Netbanking&#x27;)] locatorType: xpath
+INFO     PlansPage:selenium_driver.py:83 Element found with locator: //div[@class=&#x27;mchild item-inner svelte-xjs2xa&#x27;]/div[contains(text(),&#x27;HDFC&#x27;)] and  locatorType: xpath
+INFO     PlansPage:selenium_driver.py:106 Clicked on element with locator: //div[@class=&#x27;mchild item-inner svelte-xjs2xa&#x27;]/div[contains(text(),&#x27;HDFC&#x27;)] locatorType: xpath
+INFO     PlansPage:selenium_driver.py:35 Screenshot save to directory: /home/kavya/PycharmProjects/RecruiterPanelAutomation/base/../screenshots/payment window.1614161357885.png
+INFO     PlansPage:selenium_driver.py:132 CDwindow-AAF689275D6B724DB6A00387ACE4C7FA
+INFO     PlansPage:selenium_driver.py:132 CDwindow-AAF689275D6B724DB6A00387ACE4C7FA
+INFO     PlansPage:selenium_driver.py:83 Element found with locator: footer and  locatorType: id
+INFO     PlansPage:selenium_driver.py:106 Clicked on element with locator: footer locatorType: id
+INFO     PlansPage:selenium_driver.py:140 inside for loop
+INFO     PlansPage:selenium_driver.py:140 inside for loop
+INFO     PlansPage:selenium_driver.py:142 CDwindow-F8214CA1E7D2AC50E40B92EC709C115D
+INFO     PlansPage:selenium_driver.py:146 switched window
+INFO     PlansPage:selenium_driver.py:35 Screenshot save to directory: /home/kavya/PycharmProjects/RecruiterPanelAutomation/base/../screenshots/razor pay popup.1614161360491.png
+INFO     PlansPage:selenium_driver.py:83 Element found with locator: //button[@class=&#x27;success&#x27; and contains(text(),&#x27;Success&#x27;)] and  locatorType: xpath
+INFO     PlansPage:selenium_driver.py:106 Clicked on element with locator: //button[@class=&#x27;success&#x27; and contains(text(),&#x27;Success&#x27;)] locatorType: xpath
+INFO     PlansPage:selenium_driver.py:35 Screenshot save to directory: /home/kavya/PycharmProjects/RecruiterPanelAutomation/base/../screenshots/payment successful popup.1614161361672.png<br/> ----------------------------Captured stdout teardown---------------------------- <br/>Running one time tearDown
+<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">Tests/smoke_test.py::Post_Job_Test::test_post_a_job_1___9538596331____495004__</td>
+          <td class="col-duration">37.52</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> -----------------------------Captured stdout setup------------------------------ <br/>Running one time setUp
+<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     JobPostingFlow:selenium_driver.py:83 Element found with locator: //input[@formcontrolname=&#x27;mobile_no&#x27;] and  locatorType: xpath
+INFO     JobPostingFlow:selenium_driver.py:167 Sent data on element with locator: //input[@formcontrolname=&#x27;mobile_no&#x27;] locatorType: xpath
+INFO     JobPostingFlow:selenium_driver.py:83 Element found with locator: //input[@formcontrolname=&#x27;mobile_no&#x27;] and  locatorType: xpath
+INFO     JobPostingFlow:selenium_driver.py:155 Sent data on element with locator: //input[@formcontrolname=&#x27;mobile_no&#x27;] locatorType: xpath
+INFO     JobPostingFlow:selenium_driver.py:83 Element found with locator: //input[@formcontrolname=&#x27;otp&#x27;] and  locatorType: xpath
+INFO     JobPostingFlow:selenium_driver.py:167 Sent data on element with locator: //input[@formcontrolname=&#x27;otp&#x27;] locatorType: xpath
+INFO     JobPostingFlow:selenium_driver.py:83 Element found with locator: //input[@formcontrolname=&#x27;otp&#x27;] and  locatorType: xpath
+INFO     JobPostingFlow:selenium_driver.py:155 Sent data on element with locator: //input[@formcontrolname=&#x27;otp&#x27;] locatorType: xpath
+INFO     JobPostingFlow:selenium_driver.py:83 Element found with locator: //button[@tabindex=&#x27;0&#x27; ]/b[contains(text(),&#x27;+&#x27;)] and  locatorType: xpath
+INFO     JobPostingFlow:selenium_driver.py:106 Clicked on element with locator: //button[@tabindex=&#x27;0&#x27; ]/b[contains(text(),&#x27;+&#x27;)] locatorType: xpath
+INFO     JobPostingFlow:selenium_driver.py:83 Element found with locator: (//div[@class=&#x27;ng-input&#x27;]/input[@role=&#x27;combobox&#x27;])[1] and  locatorType: xpath
+INFO     JobPostingFlow:selenium_driver.py:106 Clicked on element with locator: (//div[@class=&#x27;ng-input&#x27;]/input[@role=&#x27;combobox&#x27;])[1] locatorType: xpath
+INFO     JobPostingFlow:selenium_driver.py:83 Element found with locator: //div[@role=&#x27;option&#x27;]/div/div/div[contains(text(),&#x27;Sales &amp; Business Development&#x27;)] and  locatorType: xpath
+INFO     JobPostingFlow:selenium_driver.py:106 Clicked on element with locator: //div[@role=&#x27;option&#x27;]/div/div/div[contains(text(),&#x27;Sales &amp; Business Development&#x27;)] locatorType: xpath
+INFO     JobPostingFlow:selenium_driver.py:83 Element found with locator: (//div[@class=&#x27;ng-input&#x27;]/input[@role=&#x27;combobox&#x27;])[2] and  locatorType: xpath
+INFO     JobPostingFlow:selenium_driver.py:106 Clicked on element with locator: (//div[@class=&#x27;ng-input&#x27;]/input[@role=&#x27;combobox&#x27;])[2] locatorType: xpath
+INFO     JobPostingFlow:selenium_driver.py:83 Element found with locator: //div[@role=&#x27;option&#x27;]/span[contains(text(),&#x27;Retail&#x27;)] and  locatorType: xpath
+INFO     JobPostingFlow:selenium_driver.py:106 Clicked on element with locator: //div[@role=&#x27;option&#x27;]/span[contains(text(),&#x27;Retail&#x27;)] locatorType: xpath
+INFO     JobPostingFlow:selenium_driver.py:83 Element found with locator: (//div[@class=&#x27;ng-input&#x27;]/input[@role=&#x27;combobox&#x27;])[3] and  locatorType: xpath
+INFO     JobPostingFlow:selenium_driver.py:106 Clicked on element with locator: (//div[@class=&#x27;ng-input&#x27;]/input[@role=&#x27;combobox&#x27;])[3] locatorType: xpath
+INFO     JobPostingFlow:selenium_driver.py:83 Element found with locator: //div[@role=&#x27;option&#x27;]/div[contains(text(),&#x27;Area Sales Officer&#x27;)] and  locatorType: xpath
+INFO     JobPostingFlow:selenium_driver.py:106 Clicked on element with locator: //div[@role=&#x27;option&#x27;]/div[contains(text(),&#x27;Area Sales Officer&#x27;)] locatorType: xpath
+INFO     JobPostingFlow:selenium_driver.py:83 Element found with locator: //div/ngx-location/input[@class=&#x27;mb-2 custom pl-0 ng-star-inserted&#x27;] and  locatorType: xpath
+INFO     JobPostingFlow:selenium_driver.py:167 Sent data on element with locator: //div/ngx-location/input[@class=&#x27;mb-2 custom pl-0 ng-star-inserted&#x27;] locatorType: xpath
+INFO     JobPostingFlow:selenium_driver.py:83 Element found with locator: //nb-list-item[@role=&#x27;listitem&#x27;]/div/b[contains(text(),&#x27;Bengaluru&#x27;)] and  locatorType: xpath
+INFO     JobPostingFlow:selenium_driver.py:106 Clicked on element with locator: //nb-list-item[@role=&#x27;listitem&#x27;]/div/b[contains(text(),&#x27;Bengaluru&#x27;)] locatorType: xpath
+INFO     JobPostingFlow:selenium_driver.py:83 Element found with locator: //button[@status=&#x27;danger&#x27; and @tabindex=&#x27;0&#x27;  and contains(text(),&#x27;NEXT&#x27;)] and  locatorType: xpath
+INFO     JobPostingFlow:selenium_driver.py:106 Clicked on element with locator: //button[@status=&#x27;danger&#x27; and @tabindex=&#x27;0&#x27;  and contains(text(),&#x27;NEXT&#x27;)] locatorType: xpath
+INFO     JobPostingFlow:selenium_driver.py:83 Element found with locator: //button[@status=&#x27;danger&#x27; and @tabindex=&#x27;0&#x27;  and contains(text(),&#x27;NEXT&#x27;)] and  locatorType: xpath
+INFO     JobPostingFlow:selenium_driver.py:106 Clicked on element with locator: //button[@status=&#x27;danger&#x27; and @tabindex=&#x27;0&#x27;  and contains(text(),&#x27;NEXT&#x27;)] locatorType: xpath
+INFO     JobPostingFlow:selenium_driver.py:83 Element found with locator: //button[@status=&#x27;danger&#x27; and @tabindex=&#x27;0&#x27;  and contains(text(),&#x27;NEXT&#x27;)] and  locatorType: xpath
+INFO     JobPostingFlow:selenium_driver.py:106 Clicked on element with locator: //button[@status=&#x27;danger&#x27; and @tabindex=&#x27;0&#x27;  and contains(text(),&#x27;NEXT&#x27;)] locatorType: xpath
+INFO     JobPostingFlow:selenium_driver.py:83 Element found with locator: //button[@status=&#x27;danger&#x27; and @tabindex=&#x27;0&#x27;  and contains(text(),&#x27;NEXT&#x27;)] and  locatorType: xpath
+INFO     JobPostingFlow:selenium_driver.py:106 Clicked on element with locator: //button[@status=&#x27;danger&#x27; and @tabindex=&#x27;0&#x27;  and contains(text(),&#x27;NEXT&#x27;)] locatorType: xpath
+INFO     JobPostingFlow:selenium_driver.py:83 Element found with locator: //button[@status=&#x27;danger&#x27; and @tabindex=&#x27;0&#x27;  and contains(text(),&#x27;NEXT&#x27;)] and  locatorType: xpath
+INFO     JobPostingFlow:selenium_driver.py:106 Clicked on element with locator: //button[@status=&#x27;danger&#x27; and @tabindex=&#x27;0&#x27;  and contains(text(),&#x27;NEXT&#x27;)] locatorType: xpath
+INFO     JobPostingFlow:selenium_driver.py:35 Screenshot save to directory: /home/kavya/PycharmProjects/RecruiterPanelAutomation/base/../screenshots/publish job.1614161389388.png
+INFO     JobPostingFlow:selenium_driver.py:83 Element found with locator: //button[@status=&#x27;danger&#x27; and @tabindex=&#x27;0&#x27;  and contains(text(),&#x27;Publish Job&#x27;)] and  locatorType: xpath
+INFO     JobPostingFlow:selenium_driver.py:106 Clicked on element with locator: //button[@status=&#x27;danger&#x27; and @tabindex=&#x27;0&#x27;  and contains(text(),&#x27;Publish Job&#x27;)] locatorType: xpath
+INFO     JobPostingFlow:selenium_driver.py:83 Element found with locator: //nb-card-header/div/small and  locatorType: xpath
+INFO     JobPostingFlow:selenium_driver.py:177 Element Found
+INFO     TestStatus:teststatus.py:22 ### VERIFICATION SUCCESSFUL :: + Verification of job posting flow
+INFO     TestStatus:selenium_driver.py:35 Screenshot save to directory: /home/kavya/PycharmProjects/RecruiterPanelAutomation/base/../screenshots/Verification of job posting flow.1614161391539.png
+INFO     TestStatus:teststatus.py:58 job posting flow ### TEST SUCCESSFUL
+INFO     JobPostingFlow:selenium_driver.py:83 Element found with locator: //button[@tabindex=&#x27;0&#x27; and contains(text(),&#x27;View suggested candidates for this job&#x27;)] and  locatorType: xpath
+INFO     JobPostingFlow:selenium_driver.py:106 Clicked on element with locator: //button[@tabindex=&#x27;0&#x27; and contains(text(),&#x27;View suggested candidates for this job&#x27;)] locatorType: xpath
+INFO     JobPostingFlow:selenium_driver.py:83 Element found with locator: (//button[@tabindex=&#x27;0&#x27;])[1] and  locatorType: xpath
+INFO     JobPostingFlow:selenium_driver.py:177 Element Found
+INFO     TestStatus:teststatus.py:22 ### VERIFICATION SUCCESSFUL :: + Candidate unlocking
+INFO     TestStatus:selenium_driver.py:35 Screenshot save to directory: /home/kavya/PycharmProjects/RecruiterPanelAutomation/base/../screenshots/Candidate unlocking.1614161394043.png
+INFO     TestStatus:teststatus.py:58 contact candidate ### TEST SUCCESSFUL
+INFO     JobPostingFlow:selenium_driver.py:83 Element found with locator: (//button[@tabindex=&#x27;0&#x27;])[1] and  locatorType: xpath
+INFO     JobPostingFlow:selenium_driver.py:106 Clicked on element with locator: (//button[@tabindex=&#x27;0&#x27;])[1] locatorType: xpath
+INFO     JobPostingFlow:selenium_driver.py:35 Screenshot save to directory: /home/kavya/PycharmProjects/RecruiterPanelAutomation/base/../screenshots/contact status.1614161399404.png<br/> ----------------------------Captured stdout teardown---------------------------- <br/>Running one time tearDown
+<br/></div></td></tr></tbody></table></body></html>

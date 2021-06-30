@@ -8,6 +8,8 @@ def oneTimeSetUp(request, browser):
     print("Running one time setUp")
     wdf = WebDriverFactory(browser)
     driver = wdf.getWebDriverInstance()
+   
+
     # lf=LoginFlow(driver)
     # time.sleep(2)
     # lf.loginFlow("9538596331","495004")

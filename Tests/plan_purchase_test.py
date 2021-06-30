@@ -20,6 +20,7 @@ class PlanPurchase_Test(unittest.TestCase):
     def test_purchasePlans(self,mobile_no, otp, email):
 
         self.pp.login( mobile_no, otp)
+        # time.sleep(3)
         self.pp.navigate_to_buy_plan( mobile_no, email)
         #self.pp.enter_GST_Details(gst_no, address, email)
 
